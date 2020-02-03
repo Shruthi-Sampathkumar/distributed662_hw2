@@ -1,0 +1,65 @@
+syntax = "proto3";
+
+package timeline;
+
+message user {
+	string name = 1;
+}
+
+message post {
+	string content = 1;
+	string owner = 2;
+}
+
+
+message follow_request {
+	user user1 = 1;
+	user user2 = 2;
+}
+
+message follow_response {
+	int32 success_status = 1;
+}
+
+
+message unfollow_request {
+	user user1 = 1;
+	user user2 = 2;
+}
+
+message unfollow_response {
+	int32 success_status = 1;
+}
+
+
+message list_request {
+	user user1 = 1;
+}
+
+message list_response {
+    int32 success_status = 1;
+	repeated string followers = 2;
+	repeated string active_users = 3;
+}
+
+service social_network {
+
+	rpc addTo (follow_request) returns (follow_response) {}
+
+	rpc removeFrom (unfollow_request) returns (unfollow_response) {}
+
+	rpc getFollowersUsers (list_request) returns (list_response) {}
+}
+
+
+//service follow {
+	
+//}
+
+//service unfollow {
+	
+//}
+
+//service list {
+	
+//}
