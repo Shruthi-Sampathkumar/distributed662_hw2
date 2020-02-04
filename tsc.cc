@@ -141,7 +141,7 @@ IReply Client::processCommand(std::string& input)
     //command = newString1[0];
     std::string command = newString1[0];
     
-    if (strcmp(command "FOLLOW")==0)
+    if (strcmp(command, "FOLLOW")==0)
     {
         //std::vector<std::string> u1 = username;
         //std::vector<std::string> u2 = newString1[1];
@@ -149,8 +149,8 @@ IReply Client::processCommand(std::string& input)
         std::string u2 = newString1[1];
 
         user user1, user2;
-	    user1.name(u1);
-        user2.name(u2);
+	    user1.set_name(u1);
+        user2.set_name(u2);
         
         follow_request f1_request;
         f1_request.set_allocated_user1(user1);
@@ -183,8 +183,8 @@ IReply Client::processCommand(std::string& input)
         std::string u2 = newString1[1];
         
         user user1, user2;
-        user1.name(u1);
-        user2.name(u2);
+        user1.set_name(u1);
+        user2.set_name(u2);
         
         unfollow_request f2_request;
         f2_request.set_allocated_user1(user1);
@@ -214,7 +214,7 @@ IReply Client::processCommand(std::string& input)
         //std::vector<std::string> u1 = username;
         std::string u1 = username;
         
-        user user1 = name(u1);
+        user user1 = set_name(u1);
         
         list_request l_request;
         l_request.set_allocated_user1(user1);
