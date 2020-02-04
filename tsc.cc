@@ -153,7 +153,7 @@ IReply Client::processCommand(std::string& input)
         user2.set_name(u2);
         
         follow_request f1_request;
-        f1_request.mutable_user1(user1);
+        f1_request.set_allocated_user1(*user1);
         f1_request.set_allocated_user2(user2);
         
         ClientContext context;
