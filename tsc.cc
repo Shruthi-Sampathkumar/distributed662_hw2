@@ -159,7 +159,7 @@ IReply Client::processCommand(std::string& input)
         ClientContext context;
         follow_response f1_response;
         
-        Status status = stub_->addTo(&context, f1_request, f1_response);
+        Status status = stub_->addTo(&context, &f1_request, &f1_response);
         ire.grpc_status = status;
         if (!status.ok())
         {
