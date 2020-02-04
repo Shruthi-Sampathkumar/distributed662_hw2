@@ -53,7 +53,7 @@ public:
         if (!ip_users_file.is_open())
         {
           std::cout << "Failed to open users.json " << std::endl;
-          return Status::NOT_FOUND;
+          return grpc::Status(grpc::StatusCode::NOT_FOUND);
         }
         
         ip_users_file >> users;
@@ -75,7 +75,7 @@ public:
         else:
         {
             response.set_success_status(1);
-            return Status::NOT_FOUND;
+            return grpc::Status(grpc::StatusCode::NOT_FOUND);
         }
         
     }
@@ -89,7 +89,7 @@ public:
         if (!ip_users_file.is_open())
         {
           std::cout << "Failed to open users.json " << std::endl;
-          return Status::NOT_FOUND;
+          return grpc::Status(grpc::StatusCode::NOT_FOUND);
         }
         
         ip_users_file >> users;
@@ -110,7 +110,7 @@ public:
           else:
           {
               response.set_success_status(1);
-              return Status::NOT_FOUND;
+              return grpc::Status(grpc::StatusCode::NOT_FOUND);
           }
           
         
@@ -125,7 +125,7 @@ public:
         if (!ip_users_file.is_open())
         {
           std::cout << "Failed to open users.json " << std::endl;
-          return Status::NOT_FOUND;
+          return grpc::Status(grpc::StatusCode::NOT_FOUND);
         }
         
         ip_users_file >> users;
@@ -164,7 +164,7 @@ public:
           else:
           {
               response.set_success_status(1);
-              return Status::NOT_FOUND;
+              return grpc::Status(grpc::StatusCode::NOT_FOUND);
           }
           
         
