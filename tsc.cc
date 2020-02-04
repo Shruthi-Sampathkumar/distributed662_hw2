@@ -121,7 +121,7 @@ IReply Client::processCommand(std::string& input)
     //parsing the input. 'newString1' will contain the parsed result
     int j=0, ctr=0;
     char newString1 [3][20];
-    for(int i=0;i<=(strlen(input));i++)
+    for(int i=0;i<=(input.length());i++)
     {
         // if space or NULL found, assign NULL into newString[ctr]
         if(input[i]==' '||input[i]=='\0')
@@ -138,7 +138,8 @@ IReply Client::processCommand(std::string& input)
     }
     
     IReply ire;
-    command = newString1[0];
+    //command = newString1[0];
+    std::string command = newString1[0];
     
     if (strcmp(command "FOLLOW")==0)
     {
