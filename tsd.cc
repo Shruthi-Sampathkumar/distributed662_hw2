@@ -59,7 +59,7 @@ public:
         }
         
         //nlohmann::json users;
-        std::string users;
+        Json::value users;
         
         ip_users_file >> users;
         std::string u1 = request->user1().name();
@@ -100,7 +100,7 @@ public:
         
         //nlohmann::json users;
         
-        std::string users;
+        Json::value users;
         
         ip_users_file >> users;
         std::string u1 = request.user1().name();
@@ -140,7 +140,7 @@ public:
         
         //nlohmann::json users;
         
-        std::string users;
+        Json::value users;
         
         ip_users_file >> users;
        std::string u1 = request.user1().name();
