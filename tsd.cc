@@ -62,8 +62,8 @@ public:
         std::string users;
         
         ip_users_file >> users;
-        std::vector<std::string> u1 = request->user1().name();
-        std::vector<std::string> u2 = request->user2().name();
+        std::string u1 = request->user1().name();
+        std::string u2 = request->user2().name();
         //user u1 = request.user1();
         //user u2 = request.user2();
         //std::vector<std::string> current_followers = users[u1]["followers"];
@@ -103,8 +103,8 @@ public:
         std::string users;
         
         ip_users_file >> users;
-        std::vector<std::string> u1 = request.user1().name();
-        std::vector<std::string> u2 = request.user2().name();
+        std::string u1 = request.user1().name();
+        std::string u2 = request.user2().name();
         //user u1 = request.user1();
         //user u2 = request.user2();
         
@@ -143,7 +143,7 @@ public:
         std::string users;
         
         ip_users_file >> users;
-        std::vector<std::string> u1 = request.user1().name();
+       std::string u1 = request.user1().name();
         //u1 = request.user1();
         
         if (users.contains(u1))
