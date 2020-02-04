@@ -9,13 +9,15 @@
 #include <iostream>
 #include <memory>
 #include <string>
-#include <grpcpp/grpcpp.h>
+#include <grpc++/grpc++.h>
 #include <bits/stdc++.h>
 
 #include <json/value.h>
 #include <fstream>
 
+#include "timeline.grpc.pb.h"
 #include "timeline.pb.h"
+
 
 using grpc::Server;
 using grpc::ServerBuilder;

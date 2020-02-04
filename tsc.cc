@@ -235,6 +235,7 @@ IReply Client::processCommand(std::string& input)
         }
         else
         {
+            //setting the iReply fields
             ire.comm_status = SUCCESS;
             std::cout << "List request successful " << std::endl;
             std::vector<std::string> following_users(l_response.followers().begin(), l_response.followers().end());
