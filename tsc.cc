@@ -149,12 +149,12 @@ IReply Client::processCommand(std::string& input)
         std::string u2 = newString1[1];
 
         user user1, user2;
-	    user1.stub_->set_name(u1);
-        user2.stub_->set_name(u2);
+	    user1.name(u1);
+        user2.name(u2);
         
         follow_request f1_request;
-        f1_request.stub_->set_allocated_user1(user1);
-        f1_request.stub_->set_allocated_user2(user2);
+        f1_request.set_allocated_user1(user1);
+        f1_request.set_allocated_user2(user2);
         
         ClientContext context;
         follow_response f1_response;
@@ -183,12 +183,12 @@ IReply Client::processCommand(std::string& input)
         std::string u2 = newString1[1];
         
         user user1, user2;
-        user1.stub_->set_name(u1);
-        user2.stub_->set_name(u2);
+        user1.name(u1);
+        user2.name(u2);
         
         unfollow_request f2_request;
-        f2_request.stub_->set_allocated_user1(user1);
-        f2_request.stub_->set_allocated_user2(user2);
+        f2_request.set_allocated_user1(user1);
+        f2_request.set_allocated_user2(user2);
         
         ClientContext context;
         unfollow_response f2_response;
@@ -214,10 +214,10 @@ IReply Client::processCommand(std::string& input)
         //std::vector<std::string> u1 = username;
         std::string u1 = username;
         
-        user user1 = stub_->set_name(u1);
+        user user1 = name(u1);
         
         list_request l_request;
-        l_request.stub_->set_allocated_user1(user1);
+        l_request.set_allocated_user1(user1);
         
         ClientContext context;
         list_response l_response;
