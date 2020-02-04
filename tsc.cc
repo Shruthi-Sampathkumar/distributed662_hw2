@@ -8,6 +8,7 @@
 #include "client.h"
 
 #include "timeline.grpc.pb.h"
+#include "timeline.pb.h"
 
 using grpc::Channel;
 using grpc::ClientContext;
