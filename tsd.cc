@@ -58,7 +58,7 @@ public:
           return Status::OK;
         }
         
-        nlohmann::json users;
+        //nlohmann::json users;
         
         ip_users_file >> users;
         std::vector<std::string> u1 = request.user1().name();
@@ -97,7 +97,7 @@ public:
           return Status::OK;
         }
         
-        nlohmann::json users;
+        //nlohmann::json users;
         
         ip_users_file >> users;
         std::vector<std::string> u1 = request.user1().name();
@@ -135,7 +135,7 @@ public:
           return Status::OK;
         }
         
-        nlohmann::json users;
+        //nlohmann::json users;
         
         ip_users_file >> users;
         std::vector<std::string> u1 = request.user1().name();
