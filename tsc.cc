@@ -214,7 +214,10 @@ IReply Client::processCommand(std::string& input)
         //std::vector<std::string> u1 = username;
         std::string u1 = username;
         
-        user user1 = set_name(u1);
+        user user1;
+        user1.set_name(u1);
+        
+        //user user1 = set_allocated_user1(u1);
         
         list_request l_request;
         l_request.set_allocated_user1(&user1);
