@@ -38,7 +38,7 @@ class Client : public IClient
     //create a stub for the service social_network
     
     
-    Client(std::shared_ptr<Channel> channel, const std::string& db)
+    Client(std::shared_ptr<Channel> channel)
         : stub_(social_network::NewStub(channel)) {}
     
 
@@ -55,8 +55,6 @@ class Client : public IClient
         // as a member variable.
         //std::unique_ptr<NameOfYourStubClass::Stub> stub_;
         std::unique_ptr<social_network::Stub> stub_;
-    
-        std::string db = social_network::GetDbFileContent(argc, argv);
 };
 
 int main(int argc, char** argv) {
