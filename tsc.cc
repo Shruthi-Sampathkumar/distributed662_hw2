@@ -193,7 +193,7 @@ IReply Client::processCommand(std::string& input)
         ClientContext context;
         unfollow_response f2_response;
         
-        Status status = stub_->removeFrom(&context, f2_request, f2_response);
+        Status status = stub_->removeFrom(&context, f2_request, &f2_response);
         ire.grpc_status = status;
         if (!status.ok())
         {
@@ -222,7 +222,7 @@ IReply Client::processCommand(std::string& input)
         ClientContext context;
         list_response l_response;
         
-        Status status = stub_->getFollowersUsers(&context, l_request, l_response);
+        Status status = stub_->getFollowersUsers(&context, l_request, &l_response);
         ire.grpc_status = status;
         if (!status.ok() or l_response.success_status()!=0)
         {
