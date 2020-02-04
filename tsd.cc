@@ -23,6 +23,7 @@ using grpc::Server;
 using grpc::ServerBuilder;
 using grpc::ServerContext;
 using grpc::Status;
+using grpc::StatusCode;
 
 using timeline::social_network;
 using timeline::user;
@@ -53,7 +54,7 @@ public:
         if (!ip_users_file.is_open())
         {
           std::cout << "Failed to open users.json " << std::endl;
-          return grpc::Status(grpc::StatusCode::NOT_FOUND);
+          return StatusCode::NOT_FOUND;
         }
         
         ip_users_file >> users;
@@ -75,7 +76,7 @@ public:
         else:
         {
             response.set_success_status(1);
-            return grpc::Status(grpc::StatusCode::NOT_FOUND);
+            return StatusCode::NOT_FOUND;
         }
         
     }
@@ -89,7 +90,7 @@ public:
         if (!ip_users_file.is_open())
         {
           std::cout << "Failed to open users.json " << std::endl;
-          return grpc::Status(grpc::StatusCode::NOT_FOUND);
+          return StatusCode::NOT_FOUND;
         }
         
         ip_users_file >> users;
@@ -110,7 +111,7 @@ public:
           else:
           {
               response.set_success_status(1);
-              return grpc::Status(grpc::StatusCode::NOT_FOUND);
+              return StatusCode::NOT_FOUND;
           }
           
         
@@ -125,7 +126,7 @@ public:
         if (!ip_users_file.is_open())
         {
           std::cout << "Failed to open users.json " << std::endl;
-          return grpc::Status(grpc::StatusCode::NOT_FOUND);
+          return StatusCode::NOT_FOUND;
         }
         
         ip_users_file >> users;
@@ -164,7 +165,7 @@ public:
           else:
           {
               response.set_success_status(1);
-              return grpc::Status(grpc::StatusCode::NOT_FOUND);
+              return StatusCode::NOT_FOUND;
           }
           
         
