@@ -54,7 +54,7 @@ public:
         if (!ip_users_file.is_open())
         {
           std::cout << "Failed to open users.json " << std::endl;
-          return StatusCode::NOT_FOUND;
+          return Status::OK;
         }
         
         ip_users_file >> users;
@@ -71,13 +71,14 @@ public:
             std::ofstream op_users_file("users.json");
             op_users_file << std::setw(4) << users << std::endl;
             response.set_success_status(0);
-            return Status::OK;
+            
         }
         else:
         {
             response.set_success_status(1);
-            return StatusCode::NOT_FOUND;
+            //return StatusCode::NOT_FOUND;
         }
+        return Status::OK;
         
     }
     
@@ -90,7 +91,7 @@ public:
         if (!ip_users_file.is_open())
         {
           std::cout << "Failed to open users.json " << std::endl;
-          return StatusCode::NOT_FOUND;
+          return Status::OK;
         }
         
         ip_users_file >> users;
@@ -106,15 +107,15 @@ public:
               std::ofstream op_users_file("users.json");
               op_users_file << std::setw(4) << users << std::endl;
               response.set_success_status(0);
-              return Status::OK;
+              //return Status::OK;
           }
           else:
           {
               response.set_success_status(1);
-              return StatusCode::NOT_FOUND;
+              //return StatusCode::NOT_FOUND;
           }
           
-        
+        return Status::OK;
     }
     
     //if the command was "LIST"
@@ -126,7 +127,7 @@ public:
         if (!ip_users_file.is_open())
         {
           std::cout << "Failed to open users.json " << std::endl;
-          return StatusCode::NOT_FOUND;
+          return Status::OK;
         }
         
         ip_users_file >> users;
@@ -160,15 +161,15 @@ public:
                       
               //}
               
-              return Status::OK;
+              //return Status::OK;
           }
           else:
           {
               response.set_success_status(1);
-              return StatusCode::NOT_FOUND;
+              //return StatusCode::NOT_FOUND;
           }
           
-        
+        return Status::OK;
     }
     
 };
