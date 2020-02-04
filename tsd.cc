@@ -53,7 +53,7 @@ public:
         if (!ip_users_file.is_open())
         {
           std::cout << "Failed to open users.json " << std::endl;
-          return Status::INVALID_ARGUMENT;
+          return Status::UNKNOWN;
         }
         
         ip_users_file >> users;
@@ -89,7 +89,7 @@ public:
         if (!ip_users_file.is_open())
         {
           std::cout << "Failed to open users.json " << std::endl;
-          return Status::INVALID_ARGUMENT;
+          return Status::UNKNOWN;
         }
         
         ip_users_file >> users;
@@ -125,7 +125,7 @@ public:
         if (!ip_users_file.is_open())
         {
           std::cout << "Failed to open users.json " << std::endl;
-          return Status::INVALID_ARGUMENT;
+          return Status::UNKNOWN;
         }
         
         ip_users_file >> users;
