@@ -33,9 +33,9 @@ using timeline::unfollow_request;
 using timeline::unfollow_response;
 using timeline::list_request;
 using timeline::list_response;
-using timeline::addTo;
-using timeline::removeFrom;
-using timeline::getFollowersUsers;
+//using timeline::addTo;
+//using timeline::removeFrom;
+//using timeline::getFollowersUsers;
 
 
 class timelineImpl final : public social_network::Service {
