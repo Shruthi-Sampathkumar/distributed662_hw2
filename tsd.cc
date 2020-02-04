@@ -14,6 +14,7 @@
 
 //#include <json/value.h>
 #include <fstream>
+using json = nlohmann::json;
 
 #include "timeline.grpc.pb.h"
 #include "timeline.pb.h"
@@ -57,6 +58,8 @@ public:
           return Status::OK;
         }
         
+        nlohmann::json users;
+        
         ip_users_file >> users;
         std::vector<std::string> u1 = request.user1().name();
         std::vector<std::string> u2 = request.user2().name();
@@ -94,6 +97,8 @@ public:
           return Status::OK;
         }
         
+        nlohmann::json users;
+        
         ip_users_file >> users;
         std::vector<std::string> u1 = request.user1().name();
         std::vector<std::string> u2 = request.user2().name();
@@ -129,6 +134,8 @@ public:
           std::cout << "Failed to open users.json " << std::endl;
           return Status::OK;
         }
+        
+        nlohmann::json users;
         
         ip_users_file >> users;
         std::vector<std::string> u1 = request.user1().name();
