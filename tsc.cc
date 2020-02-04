@@ -7,7 +7,7 @@
 #include <grpc++/grpc++.h>
 #include "client.h"
 
-#include "timeline.pb.h"
+#include "timeline.grpc.pb.h"
 
 using grpc::Channel;
 using grpc::ClientContext;
@@ -143,10 +143,13 @@ IReply Client::processCommand(std::string& input)
     
     if (strcmp(command "FOLLOW")==0)
     {
-        std::vector<std::string> u1 = username;
-        std::vector<std::string> u2 = newString1[1];
-        //u1 = username;
-        //u2 = newString1[1];
+        //std::vector<std::string> u1 = username;
+        //std::vector<std::string> u2 = newString1[1];
+        std::string u1 = username;
+        std::string u2 = newString1[1];
+
+        user user1;
+	user1.set_name(u1);
         
         follow_request f1_request;
         f1_request.set_allocated_user1(u1);
@@ -161,21 +164,22 @@ IReply Client::processCommand(std::string& input)
         {
             ire.comm_status = FAILURE_INVALID;
             std::cout << "addTo rpc failed." << std::endl;
-            return false;
+            //return false;
         }
         else
         {
             ire.comm_status = SUCCESS;
-            std::cout << "Follow request successful : " << f1_response->success_status()  << std::endl;
+            std::cout << "Follow request successful : " << f1_response.success_status()  << std::endl;
+	    //return true;
         }
         
         }
     else if (strcmp(command, "UNFOLLOW")==0)
     {
-        std::vector<std::string> u1 = username;
-        std::vector<std::string> u2 = newString1[1];
-        //u1 = username;
-        //u2 = newString1[1];
+        //std::vector<std::string> u1 = username;
+        //std::vector<std::string> u2 = newString1[1];
+        std::string u1 = username;
+        std::string u2 = newString1[1];
         
         unfollow_request f2_request;
         f2_request.set_allocated_user1(u1);
@@ -190,19 +194,20 @@ IReply Client::processCommand(std::string& input)
         {
             ire.comm_status = FAILURE_INVALID;
             std::cout << "removeFrom rpc failed : " << std::endl;
-            return false;
+            //return false;
         }
         else
         {
             ire.comm_status = SUCCESS;
-            std::cout << "Unfollow request successful : " << f2_response->success_status() << std::endl;
+            std::cout << "Unfollow request successful : " << f2_response.success_status() << std::endl;
+	    //return true;
         }
     }
     
     else if (strcmp(command, "LIST")==0)
     {
-        std::vector<std::string> u1 = username;
-        //u1 = username;
+        //std::vector<std::string> u1 = username;
+        std::string u1 = username;
         
         list_request l_request;
         l_request.set_allocated_user1(u1);
@@ -216,7 +221,7 @@ IReply Client::processCommand(std::string& input)
         {
             ire.comm_status = FAILURE_INVALID;
             std::cout << "getFollowersUsers rpc failed." << std::endl;
-            return false;
+            //return false;
         }
         else
         {
@@ -224,6 +229,7 @@ IReply Client::processCommand(std::string& input)
             ire.following_users = l_response.followers();
             ire.all_users = l_response.active_users();
             std::cout << "List request successful " << std::endl;
+	    //return true;
         }
     }
     // ------------------------------------------------------------
