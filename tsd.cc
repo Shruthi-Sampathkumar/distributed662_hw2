@@ -59,6 +59,7 @@ public:
         }
         
         //nlohmann::json users;
+        std::string users;
         
         ip_users_file >> users;
         std::vector<std::string> u1 = request.user1().name();
@@ -99,6 +100,8 @@ public:
         
         //nlohmann::json users;
         
+        std::string users;
+        
         ip_users_file >> users;
         std::vector<std::string> u1 = request.user1().name();
         std::vector<std::string> u2 = request.user2().name();
@@ -136,6 +139,8 @@ public:
         }
         
         //nlohmann::json users;
+        
+        std::string users;
         
         ip_users_file >> users;
         std::vector<std::string> u1 = request.user1().name();
