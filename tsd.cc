@@ -170,7 +170,7 @@ public:
               Json::Value current_followers = users[u1]["followers"];
               for (Json::Value::iterator t=current_followers.begin(); t!=current_followers.end(); ++t)
               {
-                  response->add_followers(&t);
+                  response->add_followers(*t);
               }
               
               //for (Json::Value::ArrayIndex i = 0; i != users.size(); i++)
