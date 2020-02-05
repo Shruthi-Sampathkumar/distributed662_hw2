@@ -51,6 +51,34 @@ public:
    //timeline::ParseDb(db, &feature_list_);
 //}
     
+    //add user to the database
+    Status addUser(ServerContext* context,const user* user1,
+    follow_response* response)
+    {
+        std::ifstream ip_users_file("users.json", std::ifstream::binary);
+        if (!ip_users_file.is_open())
+        {
+          std::cout << "Failed to open users.json " << std::endl;
+          return Status::OK;
+        }
+        
+        Json::Value users;
+        reader.parse(ip_users_file, users);
+        
+        Json::Value u1 = user1.name();
+        users["users"][u1]["name"] = u1;
+        users["users"][u1]["follwoing"] = Json::arrayValue;
+        users["users"][u1]["followers"] = Json::arrayValue;
+        
+        std::ofstream op_users_file("users.json");
+        op_users_file << std::setw(4) << users << std::endl;
+        
+        response->set_success_status(0);
+        
+        return Status::OK;
+        
+    }
+    
     //if the command was "FOLLOW"
     Status addTo(ServerContext* context, const follow_request* request,
                     follow_response* response)

@@ -60,7 +60,7 @@ class Client : public IClient
 int main(int argc, char** argv) {
 
     std::string hostname = "localhost";
-    std::string username = "default";
+    std::string username = "aaa";
     std::string port = "3010";
     int opt = 0;
     while ((opt = getopt(argc, argv, "h:u:p:")) != -1){
@@ -97,9 +97,27 @@ int Client::connectTo()
 	// ------------------------------------------------------------
     stub_ = social_network::NewStub(grpc::CreateChannel("localhost:50051",
                                                         grpc::InsecureChannelCredentials()));
-    //Client ci(
-        //grpc::CreateChannel("localhost:50051",
-                            //grpc::InsecureChannelCredentials()));
+    
+    //create_user
+    ClientContext context;
+    user user1;
+    user1.set_name(this->username);
+    follow_response f1_response;
+    
+    Status status = stub_->addUser(&context, user1, &f1_response);
+    
+    if (!status.ok())
+    {
+        ire.comm_status = FAILURE_INVALID;
+        std::cout << "addUser rpc failed." << std::endl;
+        //return false;
+    }
+    else
+    {
+        ire.comm_status = SUCCESS;
+        std::cout << "User added to database successfully " << std::endl;
+    //return true;
+    }
     std::cout << "connectTo() is successful at the client" << std::endl;
     return 1; // return 1 if success, otherwise return -1
 }
