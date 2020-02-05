@@ -60,7 +60,7 @@ public:
         }
         
         //nlohmann::json users;
-        Json::Value users;
+        grpc_json::value users;
         
         ip_users_file >> users;
         std::string u1 = request->user1().name();
@@ -101,7 +101,7 @@ public:
         
         //nlohmann::json users;
         
-        Json::value users;
+        grpc_json::value users;
         
         ip_users_file >> users;
         std::string u1 = request->user1().name();
@@ -141,7 +141,7 @@ public:
         
         //nlohmann::json users;
         
-        Json::value users;
+        grpc_json::value users;
         
         ip_users_file >> users;
        std::string u1 = request->user1().name();
