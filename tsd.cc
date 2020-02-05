@@ -194,7 +194,7 @@ public:
               {
                   
                   //std::string value = element.get<std::string>();
-                  std::string value = element.asString();
+                  std::string value = element;
                   response->add_active_users(value);
                   
               }
