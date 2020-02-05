@@ -172,13 +172,13 @@ public:
               Json::Value  v = users["users"];
                   //number _of_users = v.size();
               //the keys (names) in users json file is extracted
-              std::vector<std::string> active_users = v.getMemberNames();
+              Json::Value active_users = v.getMemberNames();
               
               //setting the response variable
               response->set_success_status(0);
               for (Json::Value::iterator t=current_followers.begin(); t!=current_followers.end(); ++t)
               {
-                  response->add_followers(*t);
+                  response->add_followers(&t);
               }
               
               for (Json::Value::iterator t=active_users.begin(); t!=active_users.end(); ++t)
