@@ -190,12 +190,20 @@ public:
               //the keys (names) in users json file is extracted
               Json::Value::Members active_users = v.getMemberNames();
               //setting the response variable
-              for (Json::Value::iterator t=active_users.begin(); t!=active_users.end(); ++t)
+              for (const auto& element : active_users)
               {
-                  Json::FastWriter fastWriter;
-                  std::string output = fastWriter.write(t);
-                  response->add_active_users(output);
+                  
+                  //std::string value = element.get<std::string>();
+                  std::string value = element.asString();
+                  response->add_active_users(value);
+                  
               }
+              //for (Json::Value::iterator t=active_users.begin(); t!=active_users.end(); ++t)
+              //{
+                  //Json::FastWriter fastWriter;
+                  //std::string output = fastWriter.write(t);
+                  //response->add_active_users(output);
+              //}
                   //for (auto const& key : v.getMemberNames())
                   //{
                       //active_users.push_back(key);
