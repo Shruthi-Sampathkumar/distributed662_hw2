@@ -62,10 +62,10 @@ public:
         //nlohmann::json users;
         //grpc_json users;
         Json::Reader reader;
-        Json::Value obj;
-        reader.parse(ip_users_file, obj);
+        Json::Value users;
+        reader.parse(ip_users_file, users);
         
-        ip_users_file >> users;
+        //ip_users_file >> users;
         std::string u1 = request->user1().name();
         std::string u2 = request->user2().name();
         //user u1 = request.user1();
@@ -106,11 +106,11 @@ public:
         
         //grpc_json users;
         Json::Reader reader;
-        Json::Value obj;
-        reader.parse(ip_users_file, obj);
+        Json::Value users;
+        reader.parse(ip_users_file, users);
         
         
-        ip_users_file >> users;
+        //ip_users_file >> users;
         std::string u1 = request->user1().name();
         std::string u2 = request->user2().name();
         //user u1 = request.user1();
@@ -150,11 +150,11 @@ public:
         
         //grpc_json users;
         Json::Reader reader;
-        Json::Value obj;
-        reader.parse(ip_users_file, obj);
+        Json::Value users;
+        reader.parse(ip_users_file, users);
         
-        ip_users_file >> users;
-       std::string u1 = request->user1().name();
+        //ip_users_file >> users;
+        std::string u1 = request->user1().name();
         //u1 = request.user1();
         
         if (users.contains(u1))
