@@ -58,8 +58,8 @@ public:
           return Status::OK;
         }
         
-        //nlohmann::json users;
-        Json::value users;
+        nlohmann::json users;
+        //Json::Value users;
         
         ip_users_file >> users;
         std::string u1 = request->user1().name();
@@ -74,12 +74,12 @@ public:
             users["users"][u2]["followers"].push_back(u1);
             std::ofstream op_users_file("users.json");
             op_users_file << std::setw(4) << users << std::endl;
-            response.set_success_status(0);
+            response->set_success_status(0);
             
         }
         else:
         {
-            response.set_success_status(1);
+            response->set_success_status(1);
             //return StatusCode::NOT_FOUND;
         }
         return Status::OK;
@@ -103,8 +103,8 @@ public:
         Json::value users;
         
         ip_users_file >> users;
-        std::string u1 = request.user1().name();
-        std::string u2 = request.user2().name();
+        std::string u1 = request->user1().name();
+        std::string u2 = request->user2().name();
         //user u1 = request.user1();
         //user u2 = request.user2();
         
@@ -114,12 +114,12 @@ public:
               users["users"][u2]["followers"].remove(u1);
               std::ofstream op_users_file("users.json");
               op_users_file << std::setw(4) << users << std::endl;
-              response.set_success_status(0);
+              response->set_success_status(0);
               //return Status::OK;
           }
           else:
           {
-              response.set_success_status(1);
+              response->set_success_status(1);
               //return StatusCode::NOT_FOUND;
           }
           
@@ -143,7 +143,7 @@ public:
         Json::value users;
         
         ip_users_file >> users;
-       std::string u1 = request.user1().name();
+       std::string u1 = request->user1().name();
         //u1 = request.user1();
         
         if (users.contains(u1))
@@ -157,14 +157,14 @@ public:
               std::vector<std::string> active_users = v.getMemberNames();
               
               //setting the response variable
-              response.set_success_status(0);
+              response->set_success_status(0);
               for (vector<string>::iterator t=current_followers.begin(); t!=current_followers.end(); ++t)
               {
                   response.mutable_followers().add_followers(*t);
               }
               for (vector<string>::iterator t=active_users.begin(); t!=active_users.end(); ++t)
               {
-                  response.mutable_active_users().add_active_users(*t);
+                  response->mutable_active_users().add_active_users(*t);
               }
                   //for (auto const& key : v.getMemberNames())
                   //{
@@ -177,7 +177,7 @@ public:
           }
           else:
           {
-              response.set_success_status(1);
+              response->set_success_status(1);
               //return StatusCode::NOT_FOUND;
           }
           
