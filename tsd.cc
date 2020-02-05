@@ -14,7 +14,7 @@
 
 //#include <json/value.h>
 //#include <jsoncpp/json/json.h>
-#include "third_party/jsoncpp/json.h"
+#include "json.h"
 #include "jsoncpp.cpp"
 #include <fstream>
 //using json = nlohmann::json;
