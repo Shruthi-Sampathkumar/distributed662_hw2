@@ -72,7 +72,7 @@ public:
         //user u2 = request.user2();
         //std::vector<std::string> current_followers = users[u1]["followers"];
         //current_followers.push_back(u2);
-        if (users.isMemeber(u1) and users.isMemeber(u2))
+        if (users.isMember(u1) and users.isMember(u2))
         {
             users["users"][u1]["following"].push_back(u2);
             users["users"][u2]["followers"].push_back(u1);
@@ -116,7 +116,7 @@ public:
         //user u1 = request.user1();
         //user u2 = request.user2();
         
-        if (users.isMemeber(u1) and users.isMemeber(u2))
+        if (users.isMember(u1) and users.isMember(u2))
           {
               users["users"][u1]["following"].remove(u2);
               users["users"][u2]["followers"].remove(u1);
@@ -157,7 +157,7 @@ public:
         std::string u1 = request->user1().name();
         //u1 = request.user1();
         
-        if (users.isMemeber(u1))
+        if (users.isMember(u1))
           {
               std::vector<std::string> current_followers = users[u1]["followers"];
               //for (Json::Value::ArrayIndex i = 0; i != users.size(); i++)
