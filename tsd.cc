@@ -60,7 +60,7 @@ public:
         if (!ip_users_file.is_open())
         {
           std::cout << "Failed to open users.json " << std::endl;
-          return Status::(StatusCode UNKNOWN);
+          return Status::OK;
         }
         
         //nlohmann::json users;
