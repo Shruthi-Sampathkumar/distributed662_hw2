@@ -14,8 +14,8 @@
 
 //#include <json/value.h>
 //#include <jsoncpp/json/json.h>
-#include "json.h"
-#include "jsoncpp.cpp"
+#include "/home/csce438/grpc/src/core/lib/json/json.h"
+#include "/home/csce438/grpc/src/core/lib/json/json.h"
 #include <fstream>
 //using json = nlohmann::json;
 
