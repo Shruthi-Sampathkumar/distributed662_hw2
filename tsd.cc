@@ -172,8 +172,7 @@ public:
               {
                   
                   //std::string value = element.get<std::string>();
-                  std::string value;
-                  element.printTo(value);
+                  std::string value = element.asString();
                   response->add_followers(value);
                   
               }
