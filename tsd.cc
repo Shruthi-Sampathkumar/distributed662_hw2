@@ -171,7 +171,7 @@ public:
               for (Json::Value::iterator t=current_followers.begin(); t!=current_followers.end(); ++t)
               {
                   Json::FastWriter fastWriter;
-                  std::string output = fastWriter.write(t);
+                  std::string output = t.asString();
                   response->add_followers(output);
               }
               
