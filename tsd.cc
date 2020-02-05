@@ -118,11 +118,11 @@ public:
         
         if (users.isMember(u1) and users.isMember(u2))
           {
-              Json::Value following = users["users"][u1]["following"];
-              for( Json::ValueIterator itr = following.begin() ; itr != following.end() ; itr++ )
-              {
+              //Json::Value following = users["users"][u1]["following"];
+              //for( Json::ValueIterator itr = following.begin() ; itr != following.end() ; itr++ )
+              //{
                   
-              }
+              //}
               users["users"][u1]["following"].removeMember(u2);
               users["users"][u2]["followers"].removeMember(u1);
               std::ofstream op_users_file("users.json");
@@ -164,6 +164,7 @@ public:
         
         if (users.isMember(u1))
           {
+              users[u1]["followers"]
               std::vector<std::string> current_followers = users[u1]["followers"];
               //for (Json::Value::ArrayIndex i = 0; i != users.size(); i++)
               //{
@@ -174,7 +175,7 @@ public:
               
               //setting the response variable
               response->set_success_status(0);
-              for (vector<string>::iterator t=current_followers.begin(); t!=current_followers.end(); ++t)
+              for (std::vector<string>::iterator t=current_followers.begin(); t!=current_followers.end(); ++t)
               {
                   response.mutable_followers().add_followers(*t);
               }
