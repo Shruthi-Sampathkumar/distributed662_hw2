@@ -170,7 +170,9 @@ public:
               Json::Value current_followers = users[u1]["followers"];
               for (Json::Value::iterator t=current_followers.begin(); t!=current_followers.end(); ++t)
               {
-                  response->add_followers(*t);
+                  Json::FastWriter fastWriter;
+                  std::string output = fastWriter.write(t);
+                  response->add_followers(output);
               }
               
               //for (Json::Value::ArrayIndex i = 0; i != users.size(); i++)
@@ -182,7 +184,9 @@ public:
               //setting the response variable
               for (Json::Value::iterator t=active_users.begin(); t!=active_users.end(); ++t)
               {
-                  response->add_active_users(*t);
+                  Json::FastWriter fastWriter;
+                  std::string output = fastWriter.write(t);
+                  response->add_active_users(output);
               }
                   //for (auto const& key : v.getMemberNames())
                   //{
