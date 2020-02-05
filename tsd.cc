@@ -164,23 +164,22 @@ public:
         
         if (users.isMember(u1))
           {
+              response->set_success_status(0);
+              
               //users[u1]["followers"]
               Json::Value current_followers = users[u1]["followers"];
+              for (Json::Value::iterator t=current_followers.begin(); t!=current_followers.end(); ++t)
+              {
+                  response->add_followers(&t);
+              }
               
               //for (Json::Value::ArrayIndex i = 0; i != users.size(); i++)
               //{
               Json::Value  v = users["users"];
                   //number _of_users = v.size();
               //the keys (names) in users json file is extracted
-              Json::Value active_users = v.getMemberNames();
-              
+              Json::Value::Members active_users = v.getMemberNames();
               //setting the response variable
-              response->set_success_status(0);
-              for (Json::Value::iterator t=current_followers.begin(); t!=current_followers.end(); ++t)
-              {
-                  response->add_followers(&t);
-              }
-              
               for (Json::Value::iterator t=active_users.begin(); t!=active_users.end(); ++t)
               {
                   response->add_active_users(*t);
