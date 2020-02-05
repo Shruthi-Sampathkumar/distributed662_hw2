@@ -66,7 +66,7 @@ public:
         Json::Reader reader;
         reader.parse(ip_users_file, users);
         
-        Json::Value u1 = user1.name();
+        Json::Value u1 = user1->name();
         users["users"][u1]["name"] = u1;
         users["users"][u1]["follwoing"] = Json::arrayValue;
         users["users"][u1]["followers"] = Json::arrayValue;
