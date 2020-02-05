@@ -171,7 +171,9 @@ public:
               for (const auto& element : users[u1]["followers"])
               {
                   
-                  std::string value = element.get<std::string>();
+                  //std::string value = element.get<std::string>();
+                  std::string value;
+                  element.printTo(value);
                   response->add_followers(value);
                   
               }
