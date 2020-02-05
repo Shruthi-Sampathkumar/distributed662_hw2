@@ -96,7 +96,7 @@ int Client::connectTo()
     // Please refer to gRpc tutorial how to create a stub.
 	// ------------------------------------------------------------
     stub_ = social_network::NewStub(grpc::CreateChannel("localhost:50051",
-                                                        grpc::InsecureChannelCredentials())));
+                                                        grpc::InsecureChannelCredentials()));
     //Client ci(
         //grpc::CreateChannel("localhost:50051",
                             //grpc::InsecureChannelCredentials()));
