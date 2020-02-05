@@ -176,7 +176,7 @@ public:
               
               //setting the response variable
               response->set_success_status(0);
-              for (std::vector<std::string>::iterator t=current_followers.begin(); t!=current_followers.end(); ++t)
+              for (Json::Value::iterator t=current_followers.begin(); t!=current_followers.end(); ++t)
               {
                   response.add_followers(*t);
               }
