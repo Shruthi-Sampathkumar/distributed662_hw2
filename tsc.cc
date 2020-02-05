@@ -38,8 +38,8 @@ class Client : public IClient
     //create a stub for the service social_network
     
     
-    Client(std::shared_ptr<Channel> channel)
-        : stub_(social_network::NewStub(channel)) {}
+    //Client(std::shared_ptr<Channel> channel)
+        //: stub_(social_network::NewStub(channel)) {}
     
 
     protected:
@@ -95,9 +95,12 @@ int Client::connectTo()
     // a member variable in your own Client class.
     // Please refer to gRpc tutorial how to create a stub.
 	// ------------------------------------------------------------
-    Client ci(
-        grpc::CreateChannel("localhost:50051",
-                            grpc::InsecureChannelCredentials()));
+    stub_ = social_network::NewStub(grpc::CreateChannel("localhost:50051",
+                                                        grpc::InsecureChannelCredentials())));
+    //Client ci(
+        //grpc::CreateChannel("localhost:50051",
+                            //grpc::InsecureChannelCredentials()));
+    std::cout << "connectTo() is successful at the client" << std::endl;
     return 1; // return 1 if success, otherwise return -1
 }
 
