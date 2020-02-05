@@ -63,6 +63,7 @@ public:
         }
         
         Json::Value users;
+        Json::Reader reader;
         reader.parse(ip_users_file, users);
         
         Json::Value u1 = user1.name();
