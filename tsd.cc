@@ -168,12 +168,16 @@ public:
               
               //users[u1]["followers"]
               Json::Value current_followers = users[u1]["followers"];
-              for (Json::Value::iterator t=current_followers.begin(); t!=current_followers.end(); ++t)
+              for (const auto& element : users[u1]["followers"])
               {
-                  Json::FastWriter fastWriter;
-                  std::string output = t.asString();
-                  response->add_followers(output);
+                  response->add_followers(element);
               }
+              //for (Json::Value::iterator t=current_followers.begin(); t!=current_followers.end(); ++t)
+              //{
+                  //Json::FastWriter fastWriter;
+                  //std::string output = t.asString();
+                  //response->add_followers(output);
+              //}
               
               //for (Json::Value::ArrayIndex i = 0; i != users.size(); i++)
               //{
