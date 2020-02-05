@@ -12,7 +12,8 @@
 #include <grpc++/grpc++.h>
 #include <bits/stdc++.h>
 
-//#include <json/value.h>
+#include <json/value.h>
+#include <json/json.h>
 #include <fstream>
 //using json = nlohmann::json;
 
@@ -58,8 +59,8 @@ public:
           return Status::OK;
         }
         
-        nlohmann::json users;
-        //Json::Value users;
+        //nlohmann::json users;
+        Json::Value users;
         
         ip_users_file >> users;
         std::string u1 = request->user1().name();
