@@ -230,7 +230,7 @@ public:
 void RunServer() {
   std::string server_address("0.0.0.0:50051");
     
-  social_network service;
+  timelineImpl service;
   ServerBuilder builder;
     
   // Listen on the given address without any authentication mechanism.
