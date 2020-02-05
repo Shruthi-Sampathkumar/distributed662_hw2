@@ -165,7 +165,11 @@ public:
         if (users.isMember(u1))
           {
               //users[u1]["followers"]
-              std::vector<std::string> current_followers = users[u1]["followers"].asString();
+              //std::vector<std::string> current_followers = users[u1]["followers"].asString();
+              for (std::vector<std::string>::iterator t=users[u1]["followers"].begin(); t!=users[u1]["followers"].end(); ++t)
+              {
+                  response.add_followers(*t);
+              }
               //for (Json::Value::ArrayIndex i = 0; i != users.size(); i++)
               //{
               Json::Value  v = users["users"];
