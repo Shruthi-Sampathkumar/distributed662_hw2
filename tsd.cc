@@ -74,8 +74,8 @@ public:
         //current_followers.push_back(u2);
         if (users.isMember(u1) and users.isMember(u2))
         {
-            users["users"][u1]["following"].push_back(u2);
-            users["users"][u2]["followers"].push_back(u1);
+            users["users"][u1]["following"].append(u2);
+            users["users"][u2]["followers"].append(u1);
             std::ofstream op_users_file("users.json");
             op_users_file << std::setw(4) << users << std::endl;
             response->set_success_status(0);
