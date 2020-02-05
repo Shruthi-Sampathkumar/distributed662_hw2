@@ -178,11 +178,12 @@ public:
               response->set_success_status(0);
               for (Json::Value::iterator t=current_followers.begin(); t!=current_followers.end(); ++t)
               {
-                  response.add_followers(*t);
+                  response->add_followers(*t);
               }
-              for (vector<string>::iterator t=active_users.begin(); t!=active_users.end(); ++t)
+              
+              for (Json::Value::iterator t=active_users.begin(); t!=active_users.end(); ++t)
               {
-                  response->mutable_active_users().add_active_users(*t);
+                  response->add_active_users(*t);
               }
                   //for (auto const& key : v.getMemberNames())
                   //{
