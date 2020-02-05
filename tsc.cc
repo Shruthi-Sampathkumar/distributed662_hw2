@@ -99,6 +99,7 @@ int Client::connectTo()
                                                         grpc::InsecureChannelCredentials()));
     
     //create_user
+    IReply ire;
     ClientContext context;
     user user1;
     user1.set_name(this->username);
