@@ -81,7 +81,7 @@ public:
             response->set_success_status(0);
             
         }
-        else:
+        else
         {
             response->set_success_status(1);
             //return StatusCode::NOT_FOUND;
@@ -125,7 +125,7 @@ public:
               response->set_success_status(0);
               //return Status::OK;
           }
-          else:
+          else
           {
               response->set_success_status(1);
               //return StatusCode::NOT_FOUND;
@@ -186,7 +186,7 @@ public:
               
               //return Status::OK;
           }
-          else:
+          else
           {
               response->set_success_status(1);
               //return StatusCode::NOT_FOUND;
