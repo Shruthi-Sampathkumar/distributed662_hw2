@@ -118,8 +118,13 @@ public:
         
         if (users.isMember(u1) and users.isMember(u2))
           {
-              users["users"][u1]["following"].remove(u2);
-              users["users"][u2]["followers"].remove(u1);
+              Json::Value following = users["users"][u1]["following"];
+              for( Json::ValueIterator itr = following.begin() ; itr != following.end() ; itr++ )
+              {
+                  
+              }
+              users["users"][u1]["following"].removeMember(u2);
+              users["users"][u2]["followers"].removeMember(u1);
               std::ofstream op_users_file("users.json");
               op_users_file << std::setw(4) << users << std::endl;
               response->set_success_status(0);
