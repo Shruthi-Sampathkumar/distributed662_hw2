@@ -170,7 +170,10 @@ public:
               Json::Value current_followers = users[u1]["followers"];
               for (const auto& element : users[u1]["followers"])
               {
-                  response->add_followers(element);
+                  
+                  std::string value = element.get<std::string>();
+                  response->add_followers(value);
+                  
               }
               //for (Json::Value::iterator t=current_followers.begin(); t!=current_followers.end(); ++t)
               //{
