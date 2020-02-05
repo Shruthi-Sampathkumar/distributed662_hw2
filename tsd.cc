@@ -164,7 +164,7 @@ public:
         
         if (users.isMember(u1))
           {
-              users[u1]["followers"]
+              //users[u1]["followers"]
               std::vector<std::string> current_followers = users[u1]["followers"];
               //for (Json::Value::ArrayIndex i = 0; i != users.size(); i++)
               //{
@@ -175,7 +175,7 @@ public:
               
               //setting the response variable
               response->set_success_status(0);
-              for (std::vector<string>::iterator t=current_followers.begin(); t!=current_followers.end(); ++t)
+              for (std::vector<std::string>::iterator t=current_followers.begin(); t!=current_followers.end(); ++t)
               {
                   response.mutable_followers().add_followers(*t);
               }
