@@ -194,21 +194,27 @@ public:
               
               response->set_success_status(0);
               
-              Json::arrayValue current_followers = users["users"][u1]["followers"];
+              //Json::arrayValue current_followers = users["users"][u1]["followers"];
               std::cout << "The followers are : " << current_followers << std::endl;
               
-              
-              
-              
-              for (const auto& element : current_followers)
+              Json::Value names= users["users"][u1]["followers"];
+              for( Json::ValueIterator itr = names.begin() ; itr != names.end() ; itr++ )
               {
                   
-                  //std::string value = element.get<std::string>();
-                  std::string value = element.asString();
-                  std::cout << value << std::endl;
-                  response->add_followers(value);
+                  string name =  *itr.asString();
+                  std::cout << name << std::endl;
                   
               }
+              
+              //for (const auto& element : current_followers)
+              //{
+                  
+                  
+                  //std::string value = element.asString();
+                  //std::cout << value << std::endl;
+                  //response->add_followers(value);
+                  
+              //}
               //for (Json::Value::iterator t=current_followers.begin(); t!=current_followers.end(); ++t)
               //{
                   //Json::FastWriter fastWriter;
