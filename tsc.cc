@@ -144,7 +144,7 @@ IReply Client::processCommand(std::string& input)
     std::cout << "The input command is : " << input << std::endl;
     
     int j=0, ctr=0;
-    char newString1 [2][20]="";
+    char newString1 [2][20];
     for(int i=0;i<=(input.length());i++)
     {
         // if space or NULL found, assign NULL into newString[ctr]
