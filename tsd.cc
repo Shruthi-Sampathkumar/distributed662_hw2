@@ -195,13 +195,13 @@ public:
               response->set_success_status(0);
               
               //Json::arrayValue current_followers = users["users"][u1]["followers"];
-              std::cout << "The followers are : " << current_followers << std::endl;
+              std::cout << "The followers are : " << std::endl;
               
               Json::Value names= users["users"][u1]["followers"];
               for( Json::ValueIterator itr = names.begin() ; itr != names.end() ; itr++ )
               {
                   
-                  std::string name =  *itr.asString();
+                  std::string name =  *itr->asString();
                   std::cout << name << std::endl;
                   
               }
