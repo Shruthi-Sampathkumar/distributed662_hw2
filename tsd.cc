@@ -62,12 +62,13 @@ public:
         Json::Reader reader;
         reader.parse(ip_users_file, users);
         
+        std::string u1 = user1->name();
+        
         //check if the user already is existing in the database
         if (!users["users"].isMember(u1))
         {
             Json::Value followers(Json::arrayValue);
             Json::Value following(Json::arrayValue);
-            std::string u1 = user1->name();
             
             users["users"][u1]["name"] = u1;
             users["users"][u1]["following"] = following;
