@@ -198,13 +198,15 @@ public:
               std::cout << "The followers are : " << std::endl;
               
               Json::Value names= users["users"][u1]["followers"];
-              for( Json::ValueIterator itr = names.begin() ; itr != names.end() ; itr++ )
-              {
+              
+              std::cout << names << std::endl;
+              //for( Json::ValueIterator itr = names.begin() ; itr != names.end() ; itr++ )
+              //{
                   
-                  std::string name =  *itr->asString();
-                  std::cout << name << std::endl;
+                  //std::string name =  *itr->asString();
+                  //std::cout << name << std::endl;
                   
-              }
+              //}
               
               //for (const auto& element : current_followers)
               //{
