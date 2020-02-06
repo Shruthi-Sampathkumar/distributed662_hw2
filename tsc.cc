@@ -141,6 +141,7 @@ IReply Client::processCommand(std::string& input)
 	// ------------------------------------------------------------
     
     //parsing the input. 'newString1' will contain the parsed result
+    std::cout << "The input command is : " << input << std::endl;
     int j=0, ctr=0;
     char newString1 [3][20];
     for(int i=0;i<=(input.length());i++)

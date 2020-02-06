@@ -88,6 +88,7 @@ public:
                     follow_response* response)
     {
         //reading the json file
+        std::cout << "Command received from the client is FOLLOW " << std::endl;
         std::ifstream ip_users_file("users.json", std::ifstream::binary);
         if (!ip_users_file.is_open())
         {
