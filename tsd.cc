@@ -191,10 +191,10 @@ public:
               
               response->set_success_status(0);
               
-              Json::Value current_followers = users[u1]["followers"];
+              Json::Value current_followers = users["users"][u1]["followers"];
               std::cout << "The followers are : " << std::endl;
               
-              for (const auto& element : users["users"][u1]["followers"])
+              for (const auto& element : cuurent_followers)
               {
                   
                   //std::string value = element.get<std::string>();
