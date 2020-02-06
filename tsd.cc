@@ -175,28 +175,25 @@ public:
           return Status::OK;
         }
         
-        //nlohmann::json users;
-        
-        //grpc_json users;
         Json::Reader reader;
         Json::Value users;
         reader.parse(ip_users_file, users);
         
-        //ip_users_file >> users;
         std::string u1 = request->user1().name();
-        //u1 = request.user1();
         
         if (users.isMember(u1))
           {
               response->set_success_status(0);
               
-              //users[u1]["followers"]
               Json::Value current_followers = users[u1]["followers"];
+              std::cout << "The followers are : " << std::endl;
+              
               for (const auto& element : users[u1]["followers"])
               {
                   
                   //std::string value = element.get<std::string>();
                   std::string value = element.asString();
+                  std::cout << value << std:endl;
                   response->add_followers(value);
                   
               }
