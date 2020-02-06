@@ -194,7 +194,7 @@ public:
               Json::Value current_followers = users[u1]["followers"];
               std::cout << "The followers are : " << std::endl;
               
-              for (const auto& element : users[u1]["followers"])
+              for (const auto& element : users["users"][u1]["followers"])
               {
                   
                   //std::string value = element.get<std::string>();
