@@ -66,10 +66,12 @@ public:
         Json::Reader reader;
         reader.parse(ip_users_file, users);
         
-        Json::Value u1 = user1->name();
-        users["users"][u1]["name"] = u1;
-        users["users"][u1]["follwoing"] = Json::arrayValue;
-        users["users"][u1]["followers"] = Json::arrayValue;
+        Json::Value followers(Json::arrayValue);
+        Json::Value following(Json::arrayValue);
+        
+        users["users"][u1]["name"] = user1->name();
+        users["users"][u1]["follwoing"] = following;
+        users["users"][u1]["followers"] = followers;
         
         std::ofstream op_users_file("users.json");
         op_users_file << std::setw(4) << users << std::endl;
