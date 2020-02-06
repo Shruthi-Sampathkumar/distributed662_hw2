@@ -202,23 +202,23 @@ public:
               Json::Value names= users["users"][u1]["followers"];
               
               //std::cout << names << std::endl;
-              for( Json::ValueIterator itr = names.begin() ; itr != names.end() ; itr++ )
-              {
-                  
-                  std::string name =  *itr->asString();
-                  std::cout << name << std::endl;
-                  
-              }
-              
-              //for (const auto& element : current_followers)
+              //for( Json::ValueIterator itr = names.begin() ; itr != names.end() ; itr++ )
               //{
                   
-                  
-                  //std::string value = element.asString();
-                  //std::cout << value << std::endl;
-                  //response->add_followers(value);
+                  //std::string name =  *itr->asString();
+                  //std::cout << name << std::endl;
                   
               //}
+              
+              for (const auto& element : names)
+              {
+                  
+                  
+                  std::string value = element.asString();
+                  std::cout << value << std::endl;
+                  response->add_followers(value);
+                  
+              }
               //for (Json::Value::iterator t=current_followers.begin(); t!=current_followers.end(); ++t)
               //{
                   //Json::FastWriter fastWriter;
