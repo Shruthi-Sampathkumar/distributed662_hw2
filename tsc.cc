@@ -250,7 +250,7 @@ IReply Client::processCommand(std::string& input)
         
         Status status = stub_->getFollowersUsers(&context, l_request, &l_response);
         ire.grpc_status = status;
-        std::cout << "The status of the function is " << ire.grpc_status << std::endl;
+        std::cout << "The status of the function is " << std::endl;
         if (!status.ok() or l_response.success_status()!=0)
         {
             ire.comm_status = FAILURE_UNKNOWN;
