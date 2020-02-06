@@ -95,12 +95,17 @@ public:
           std::cout << "Failed to open users.json " << std::endl;
           return Status::OK;
         }
-        
+        else
+        {
+            std::cout << "The json file is open " << std::endl;
+        }
         //nlohmann::json users;
         //grpc_json users;
         Json::Reader reader;
         Json::Value users;
         reader.parse(ip_users_file, users);
+        
+        std::cout << "The json file is parsed " << std::endl;
         
         //ip_users_file >> users;
         std::string u1 = request->user1().name();
