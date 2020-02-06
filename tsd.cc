@@ -68,8 +68,9 @@ public:
         
         Json::Value followers(Json::arrayValue);
         Json::Value following(Json::arrayValue);
+        std::string u1 = user1->name();
         
-        users["users"][u1]["name"] = user1->name();
+        users["users"][u1]["name"] = u1;
         users["users"][u1]["follwoing"] = following;
         users["users"][u1]["followers"] = followers;
         
