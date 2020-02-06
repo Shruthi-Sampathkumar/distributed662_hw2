@@ -110,13 +110,11 @@ public:
         //ip_users_file >> users;
         std::string u1 = request->user1().name();
         std::string u2 = request->user2().name();
-        std::cout << "The user 1 is " << u1 << std::endl;
-        std::cout << "The user 2 is " << u2 << std::endl;
         //user u1 = request.user1();
         //user u2 = request.user2();
         //std::vector<std::string> current_followers = users[u1]["followers"];
         //current_followers.push_back(u2);
-        if (users.isMember(u1) and users.isMember(u2))
+        if (users["users"].isMember(u1) and users["users"].isMember(u2))
         {
             std::cout << "The jon file contains user1 and user2 " << std::endl;
             users["users"][u1]["following"].append(u2);
