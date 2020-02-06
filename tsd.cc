@@ -97,23 +97,16 @@ public:
           std::cout << "Failed to open users.json " << std::endl;
           return Status::OK;
         }
-        //else
-        //{
-            //std::cout << "The json file is open " << std::endl;
-        //}
         
         Json::Reader reader;
         Json::Value users;
         reader.parse(ip_users_file, users);
-        
-        //std::cout << "The json file is parsed " << std::endl;
         
         std::string u1 = request->user1().name();
         std::string u2 = request->user2().name();
         
         if (users["users"].isMember(u1) and users["users"].isMember(u2))
         {
-            //std::cout << "The jon file contains user1 and user2 " << std::endl;
             users["users"][u1]["following"].append(u2);
             std::cout << "Added Following " << std::endl;
             
@@ -148,7 +141,6 @@ public:
         Json::Value users;
         reader.parse(ip_users_file, users);
         
-        
         std::string u1 = request->user1().name();
         std::string u2 = request->user2().name();
         
@@ -180,88 +172,44 @@ public:
           return Status::OK;
         }
         
-        std::cout << "Json file is open " << std::endl;
-        
         Json::Reader reader;
         Json::Value users;
         reader.parse(ip_users_file, users);
-        
-        std::cout << "Json file is parsed " << std::endl;
-        
         std::string u1 = request->user1().name();
         
         if (users["users"].isMember(u1))
           {
-              std::cout << "Json file contains  " << u1 << std::endl;
-              
+              //setting the response variable
               response->set_success_status(0);
               
-              //Json::arrayValue current_followers = users["users"][u1]["followers"];
+              std::cout << "Json file contains  " << u1 << std::endl;
               std::cout << "The followers are : " << std::endl;
               
               Json::Value names= users["users"][u1]["followers"];
-              
-              //std::cout << names << std::endl;
-              //for( Json::ValueIterator itr = names.begin() ; itr != names.end() ; itr++ )
-              //{
-                  
-                  //std::string name =  *itr->asString();
-                  //std::cout << name << std::endl;
-                  
-              //}
-              
               for (const auto& element : names)
               {
-                  
-                  
                   std::string value = element.asString();
                   std::cout << value << std::endl;
                   response->add_followers(value);
                   
               }
-              //for (Json::Value::iterator t=current_followers.begin(); t!=current_followers.end(); ++t)
-              //{
-                  //Json::FastWriter fastWriter;
-                  //std::string output = t.asString();
-                  //response->add_followers(output);
-              //}
               
-              //for (Json::Value::ArrayIndex i = 0; i != users.size(); i++)
-              //{
               Json::Value  v = users["users"];
-                  //number _of_users = v.size();
               //the keys (names) in users json file is extracted
               Json::Value::Members active_users = v.getMemberNames();
               std::cout << "The active members are " << std::endl;
-              //setting the response variable
               for (const auto& element : active_users)
               {
-                  
-                  //std::string value = element.get<std::string>();
                   std::string value = element;
                   std::cout << value << std::endl;
                   response->add_active_users(value);
                   
               }
-              //for (Json::Value::iterator t=active_users.begin(); t!=active_users.end(); ++t)
-              //{
-                  //Json::FastWriter fastWriter;
-                  //std::string output = fastWriter.write(t);
-                  //response->add_active_users(output);
-              //}
-                  //for (auto const& key : v.getMemberNames())
-                  //{
-                      //active_users.push_back(key);
-                  //}
-                      
-              //}
-              
-              //return Status::OK;
           }
           else
           {
+              //set the response variable to indicate failure
               response->set_success_status(1);
-              //return StatusCode::NOT_FOUND;
           }
           
         return Status::OK;

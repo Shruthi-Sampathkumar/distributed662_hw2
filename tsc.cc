@@ -186,7 +186,7 @@ IReply Client::processCommand(std::string& input)
         ire.grpc_status = status;
         if (!status.ok())
         {
-            ire.comm_status = FAILURE_INVALID;
+            ire.comm_status = FAILURE_UNKNOWN;
             std::cout << "addTo rpc failed." << std::endl;
             //return false;
         }
@@ -220,7 +220,7 @@ IReply Client::processCommand(std::string& input)
         ire.grpc_status = status;
         if (!status.ok())
         {
-            ire.comm_status = FAILURE_INVALID;
+            ire.comm_status = FAILURE_UNKNOWN;
             std::cout << "removeFrom rpc failed : " << std::endl;
             //return false;
         }
@@ -252,22 +252,27 @@ IReply Client::processCommand(std::string& input)
         ire.grpc_status = status;
         if (!status.ok() or l_response.success_status()!=0)
         {
-            ire.comm_status = FAILURE_INVALID;
+            ire.comm_status = FAILURE_UNKNOWN;
             std::cout << "getFollowersUsers rpc failed." << std::endl;
             //return false;
         }
         else
         {
-            //setting the iReply fields
-            ire.comm_status = SUCCESS;
-            std::vector<std::string> following_users(l_response.followers().begin(), l_response.followers().end());
-            
-            std::vector<std::string> all_users(l_response.active_users().begin(), l_response.active_users().end());
-            
-            ire.following_users = following_users;
-            ire.all_users = all_users;
-            std::cout << "List request successful " << std::endl;
-	    //return true;
+            if (!l_response.success_status())
+            {
+                ire.comm_status = SUCCESS;
+                std::vector<std::string> following_users(l_response.followers().begin(), l_response.followers().end());
+                
+                std::vector<std::string> all_users(l_response.active_users().begin(), l_response.active_users().end());
+                
+                ire.following_users = following_users;
+                ire.all_users = all_users;
+                std::cout << "List request successful " << std::endl;
+            }
+            else
+            {
+                ire.comm_status = FAILURE_UNKNOWN;
+            }
         }
     }
     // ------------------------------------------------------------
