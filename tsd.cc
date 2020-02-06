@@ -105,7 +105,7 @@ public:
         Json::Value users;
         reader.parse(ip_users_file, users);
         
-        std::cout << "The json file is parsed " << std::endl;
+        std::cout << "The json file is parsed " << users << std::endl;
         
         //ip_users_file >> users;
         std::string u1 = request->user1().name();
@@ -116,7 +116,7 @@ public:
         //current_followers.push_back(u2);
         if (users.isMember(u1) and users.isMember(u2))
         {
-            std::cout << "The sjon file contains user1 and user2 " << std::endl;
+            std::cout << "The jon file contains user1 and user2 " << std::endl;
             users["users"][u1]["following"].append(u2);
             users["users"][u2]["followers"].append(u1);
             std::ofstream op_users_file("users.json");
