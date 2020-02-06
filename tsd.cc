@@ -193,7 +193,7 @@ public:
                   
                   //std::string value = element.get<std::string>();
                   std::string value = element.asString();
-                  std::cout << value << std:endl;
+                  std::cout << value << std::endl;
                   response->add_followers(value);
                   
               }
