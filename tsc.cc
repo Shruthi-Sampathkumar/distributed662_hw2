@@ -142,8 +142,9 @@ IReply Client::processCommand(std::string& input)
     
     //parsing the input. 'newString1' will contain the parsed result
     std::cout << "The input command is : " << input << std::endl;
+    
     int j=0, ctr=0;
-    char newString1 [3][20];
+    char newString1 [2][20]="";
     for(int i=0;i<=(input.length());i++)
     {
         // if space or NULL found, assign NULL into newString[ctr]
@@ -161,13 +162,10 @@ IReply Client::processCommand(std::string& input)
     }
     
     IReply ire;
-    //command = newString1[0];
-    char* command = newString1[0];
+    std::string command = newString1[0];
     
     if (strcmp(command, "FOLLOW")==0)
     {
-        //std::vector<std::string> u1 = username;
-        //std::vector<std::string> u2 = newString1[1];
         std::string u1 = username;
         std::string u2 = newString1[1];
 
@@ -222,7 +220,6 @@ IReply Client::processCommand(std::string& input)
         {
             ire.comm_status = FAILURE_UNKNOWN;
             std::cout << "removeFrom rpc failed : " << std::endl;
-            //return false;
         }
         else
         {
@@ -266,8 +263,8 @@ IReply Client::processCommand(std::string& input)
                 
                 std::vector<std::string> all_users(l_response.active_users().begin(), l_response.active_users().end());
                 
-                ire.following_users = following_users;
-                ire.all_users = all_users;
+                strcpy(ire.following_users, following_users);
+                strcpy(ire.all_users, all_users);
                 std::cout << "List request successful " << std::endl;
             }
             else
