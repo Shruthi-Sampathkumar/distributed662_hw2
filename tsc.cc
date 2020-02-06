@@ -263,8 +263,10 @@ IReply Client::processCommand(std::string& input)
                 
                 std::vector<std::string> all_users(l_response.active_users().begin(), l_response.active_users().end());
                 
-                strcpy(ire.following_users, following_users);
-                strcpy(ire.all_users, all_users);
+                //strcpy(ire.following_users, following_users);
+                //strcpy(ire.all_users, all_users);
+                ire.following_users = following_users;
+                ire.all_users = all_users;
                 std::cout << "List request successful " << std::endl;
             }
             else
