@@ -71,7 +71,7 @@ public:
         std::string u1 = user1->name();
         
         users["users"][u1]["name"] = u1;
-        users["users"][u1]["follwoing"] = following;
+        users["users"][u1]["following"] = following;
         users["users"][u1]["followers"] = followers;
         
         std::ofstream op_users_file("users.json");
@@ -105,7 +105,7 @@ public:
         Json::Value users;
         reader.parse(ip_users_file, users);
         
-        std::cout << "The json file is parsed " << std::endl;
+        //std::cout << "The json file is parsed " << std::endl;
         
         //ip_users_file >> users;
         std::string u1 = request->user1().name();
