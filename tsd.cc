@@ -47,10 +47,6 @@ using timeline::list_response;
 
 class timelineImpl final : public social_network::Service {
 public:
- //explicit timelineImpl(const std::string& db) {
-   //timeline::ParseDb(db, &feature_list_);
-//}
-    
     //add user to the database
     Status addUser(ServerContext* context,const user* user1,
     follow_response* response)
@@ -66,16 +62,21 @@ public:
         Json::Reader reader;
         reader.parse(ip_users_file, users);
         
-        Json::Value followers(Json::arrayValue);
-        Json::Value following(Json::arrayValue);
-        std::string u1 = user1->name();
-        
-        users["users"][u1]["name"] = u1;
-        users["users"][u1]["following"] = following;
-        users["users"][u1]["followers"] = followers;
-        
-        std::ofstream op_users_file("users.json");
-        op_users_file << std::setw(4) << users << std::endl;
+        //check if the user already is existing in the database
+        if (!users["users"].isMember(u1))
+        {
+            Json::Value followers(Json::arrayValue);
+            Json::Value following(Json::arrayValue);
+            std::string u1 = user1->name();
+            
+            users["users"][u1]["name"] = u1;
+            users["users"][u1]["following"] = following;
+            users["users"][u1]["followers"] = followers;
+            
+            std::ofstream op_users_file("users.json");
+            op_users_file << std::setw(4) << users << std::endl;
+            
+        }
         
         response->set_success_status(0);
         
