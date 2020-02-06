@@ -232,12 +232,14 @@ public:
                   //number _of_users = v.size();
               //the keys (names) in users json file is extracted
               Json::Value::Members active_users = v.getMemberNames();
+              std::cout << "The active members are " << std::endl;
               //setting the response variable
               for (const auto& element : active_users)
               {
                   
                   //std::string value = element.get<std::string>();
                   std::string value = element;
+                  std::cout << value << std::endl;
                   response->add_active_users(value);
                   
               }
