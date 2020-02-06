@@ -105,11 +105,13 @@ public:
         Json::Value users;
         reader.parse(ip_users_file, users);
         
-        std::cout << "The json file is parsed " << users << std::endl;
+        std::cout << "The json file is parsed " << std::endl;
         
         //ip_users_file >> users;
         std::string u1 = request->user1().name();
         std::string u2 = request->user2().name();
+        std::cout << "The user 1 is " << u1 << std::endl;
+        std::cout << "The user 2 is " << u2 << std::endl;
         //user u1 = request.user1();
         //user u2 = request.user2();
         //std::vector<std::string> current_followers = users[u1]["followers"];
