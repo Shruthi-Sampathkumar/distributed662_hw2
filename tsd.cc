@@ -113,7 +113,10 @@ public:
         {
             //std::cout << "The jon file contains user1 and user2 " << std::endl;
             users["users"][u1]["following"].append(u2);
+            std::cout << "Added Following " << std::endl;
+            
             users["users"][u2]["followers"].append(u1);
+            std::cout << "Added Followers " << std::endl;
             std::ofstream op_users_file("users.json");
             op_users_file << std::setw(4) << users << std::endl;
             response->set_success_status(0);
