@@ -95,10 +95,10 @@ public:
           std::cout << "Failed to open users.json " << std::endl;
           return Status::OK;
         }
-        else
-        {
-            std::cout << "The json file is open " << std::endl;
-        }
+        //else
+        //{
+            //std::cout << "The json file is open " << std::endl;
+        //}
         
         Json::Reader reader;
         Json::Value users;
@@ -185,9 +185,9 @@ public:
         
         std::string u1 = request->user1().name();
         
-        if (users.isMember(u1))
+        if (users["users"].isMember(u1))
           {
-              std::cout << "Json file is open " << std::endl;
+              std::cout << "Json file contains  " << u1 << std::endl;
               
               response->set_success_status(0);
               
