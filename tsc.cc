@@ -162,7 +162,7 @@ IReply Client::processCommand(std::string& input)
     }
     
     IReply ire;
-    std::string command = newString1[0];
+    char* command = newString1[0];
     
     if (strcmp(command, "FOLLOW")==0)
     {
