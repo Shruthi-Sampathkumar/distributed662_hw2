@@ -201,7 +201,7 @@ public:
               for( Json::ValueIterator itr = names.begin() ; itr != names.end() ; itr++ )
               {
                   
-                  string name =  *itr.asString();
+                  std::string name =  *itr.asString();
                   std::cout << name << std::endl;
                   
               }
