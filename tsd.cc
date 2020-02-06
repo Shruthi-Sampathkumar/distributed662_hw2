@@ -175,14 +175,20 @@ public:
           return Status::OK;
         }
         
+        std::cout << "Json file is open " << std::endl;
+        
         Json::Reader reader;
         Json::Value users;
         reader.parse(ip_users_file, users);
+        
+        std::cout << "Json file is parsed " << std::endl;
         
         std::string u1 = request->user1().name();
         
         if (users.isMember(u1))
           {
+              std::cout << "Json file is open " << std::endl;
+              
               response->set_success_status(0);
               
               Json::Value current_followers = users[u1]["followers"];
