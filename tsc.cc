@@ -60,7 +60,7 @@ class Client : public IClient
 int main(int argc, char** argv) {
 
     std::string hostname = "localhost";
-    std::string username = "Shru";
+    std::string username = "xyz";
     std::string port = "3010";
     int opt = 0;
     while ((opt = getopt(argc, argv, "h:u:p:")) != -1){
