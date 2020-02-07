@@ -166,7 +166,7 @@ IReply Client::processCommand(std::string& input)
     
     if (strcmp(command, "FOLLOW")==0)
     {
-        std::string u1 = username;
+        std::string u1 = this->username;
         std::string u2 = newString1[1];
 
         user user1, user2;
@@ -228,7 +228,7 @@ IReply Client::processCommand(std::string& input)
     
     else if (strcmp(command, "LIST")==0)
     {
-        std::string u1 = username;
+        std::string u1 = this->username;
         
         user user1;
         user1.set_name(u1);
