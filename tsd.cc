@@ -144,7 +144,7 @@ public:
         std::string u1 = request->user1();
         std::string u2 = request->user2();
         
-        if (users.isMember(u1) and users.isMember(u2))
+        if (users["users"].isMember(u1) and users["users"].isMember(u2))
           {
               std::cout << "Json contains both in unfollow" << std::endl;
               users["users"][u1]["following"].removeMember(u2);
