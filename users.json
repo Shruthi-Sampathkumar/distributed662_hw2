@@ -1,0 +1,23 @@
+   {
+	"users" : 
+	{
+		"Shru" : 
+		{
+			"followers" : [],
+			"following" : 
+			[
+				"xyz"
+			],
+			"name" : "Shru"
+		},
+		"xyz" : 
+		{
+			"followers" : 
+			[
+				"Shru"
+			],
+			"following" : [],
+			"name" : "xyz"
+		}
+	}
+}
