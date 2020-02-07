@@ -1,12 +1,34 @@
    {
 	"users" : 
 	{
+		"Anna" : 
+		{
+			"followers" : 
+			[
+				"Ben"
+			],
+			"following" : 
+			[
+				"Shru"
+			],
+			"name" : "Anna"
+		},
+		"Ben" : 
+		{
+			"followers" : [],
+			"following" : 
+			[
+				"Anna"
+			],
+			"name" : "Ben"
+		},
 		"Shru" : 
 		{
 			"followers" : 
 			[
 				"xyz",
-				"aaa"
+				"aaa",
+				"Anna"
 			],
 			"following" : 
 			[
