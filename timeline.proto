@@ -2,6 +2,9 @@ syntax = "proto3";
 
 package timeline;
 
+message user {
+    string name = 1;
+}
 
 message post {
 	string content = 1;
