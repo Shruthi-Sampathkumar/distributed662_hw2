@@ -312,8 +312,9 @@ public:
                     Json::Value updated_timeline = Json::arrayValue;
                     
                     //updating the timeline json object of the followers
-                    std::string tmp = post->content();
-                    updated_timeline[0] = tmp;
+                    //std::string tmp = post->content();
+                    updated_timeline[0] = Json::Value post->content();
+                    
                     int c = 1;
                     for(int i = 0; i<timeline_parsed[value].size()-1; i++)
                     {
