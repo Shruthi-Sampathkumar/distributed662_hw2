@@ -266,13 +266,13 @@ IReply Client::processCommand(std::string& input)
         
     }
     
-    else if (strcmp(command, "TIMELINE")==0)
-    {
-        IReply ire;
+    //else if (strcmp(command, "TIMELINE")==0)
+    //{
+        //IReply ire;
         
         
-        ire.grpc_status = status;
-    }
+        //ire.grpc_status = status;
+    //}
     // ------------------------------------------------------------
 	// GUIDE 2:
 	// Then, you should create a variable of IReply structure
@@ -324,7 +324,7 @@ void Client::processTimeline()
     // and you can terminate the client program by pressing
     // CTRL-C (SIGINT)
 	// ------------------------------------------------------------
-    
+    /*
     ClientContext context;
     
     std::shared_ptr<ClientReaderWriter<post, post> > stream(
@@ -344,5 +344,6 @@ void Client::processTimeline()
       }
       stream->WritesDone();
     });
+     */
     
 }
