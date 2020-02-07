@@ -3,20 +3,38 @@
 	{
 		"Shru" : 
 		{
-			"followers" : [],
+			"followers" : 
+			[
+				"xyz",
+				"aaa"
+			],
 			"following" : 
 			[
 				"xyz"
 			],
 			"name" : "Shru"
 		},
+		"aaa" : 
+		{
+			"followers" : [],
+			"following" : 
+			[
+				"Shru"
+			],
+			"name" : "aaa"
+		},
 		"xyz" : 
 		{
 			"followers" : 
 			[
-				"Shru"
+				"Shru",
+				"xyz"
 			],
-			"following" : [],
+			"following" : 
+			[
+				"Shru",
+				"xyz"
+			],
 			"name" : "xyz"
 		}
 	}
