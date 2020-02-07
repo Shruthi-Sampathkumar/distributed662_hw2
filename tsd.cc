@@ -327,10 +327,10 @@ public:
                     timeline_parsed[value] = updated_timeline;
                     
                 //displying the updated timeline to followers who are in timeline mode
-                    stream_object = members[value];
+                    //stream_object = members[value];
                     for(int i = 0; i<timeline_parsed[value].size(); i++)
                     {
-                        stream_object->Write(timeline_parsed[value][i]);
+                        members[value]->Write(timeline_parsed[value][i]);
                     }
                 }
                 
