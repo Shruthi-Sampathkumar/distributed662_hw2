@@ -8,7 +8,7 @@ message user {
 
 message post {
 	string content = 1;
-	string owner = 2;
+	//string owner = 2;
 }
 
 message follow_request {
@@ -50,6 +50,9 @@ service social_network {
 	rpc removeFrom (unfollow_request) returns (unfollow_response) {}
 
 	rpc getFollowersUsers (list_request) returns (list_response) {}
+    
+    rpc updates (stream post) returns (stream post) {}
+    
 }
 
 
