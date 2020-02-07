@@ -57,8 +57,8 @@ public:
         
     //};
     
-    struct current_timeline members[50];
-    current_members = 0;
+    //struct current_timeline members[50];
+    //current_members = 0;
     std::string username = "";
     unordered_map<std::tring, ClientReaderWriter<post, post>*> members;
     
