@@ -228,7 +228,7 @@ IReply Client::processCommand(std::string& input)
     
     else if (strcmp(command, "LIST")==0)
     {
-        std::string&& u1 = username;
+        std::string u1 = username;
         
         user user1;
         user1.set_name(u1);
