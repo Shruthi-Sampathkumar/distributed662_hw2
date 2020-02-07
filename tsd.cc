@@ -59,8 +59,8 @@ public:
     
     //struct current_timeline members[50];
     //current_members = 0;
-    std::string username = "";
-    std::unordered_map<std::string, ServerReaderWriter<post, post>*> members;
+    //std::string username = "";
+    std::unordered_map<std::string, ServerReaderWriter<post, post>* > members;
     
     
     //add user to the database
