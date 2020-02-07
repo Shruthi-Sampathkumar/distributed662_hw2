@@ -169,13 +169,12 @@ IReply Client::processCommand(std::string& input)
         //std::string u1 = this->username;
         std::string u2 = newString1[1];
 
-        user user1, user2;
-	    user1.set_name(this->username);
-        user2.set_name(u2);
+	    //user1.set_name(this->username);
+        //user2.set_name(u2);
         
         follow_request f1_request;
-        f1_request.set_allocated_user1(&user1);
-        f1_request.set_allocated_user2(&user2);
+        f1_request.set_user1(username);
+        f1_request.set_user2(u2);
         
         ClientContext context;
         follow_response f1_response;
@@ -199,13 +198,13 @@ IReply Client::processCommand(std::string& input)
         //std::string u1 = username;
         std::string u2 = newString1[1];
         
-        user user1, user2;
-        user1.set_name(this->username);
-        user2.set_name(u2);
+        //user user1, user2;
+        //user1.set_name(this->username);
+        //user2.set_name(u2);
         
         unfollow_request f2_request;
-        f2_request.set_allocated_user1(&user1);
-        f2_request.set_allocated_user2(&user2);
+        f2_request.set_user1(username);
+        f2_request.set_user2(u2);
         
         ClientContext context;
         unfollow_response f2_response;
@@ -228,11 +227,11 @@ IReply Client::processCommand(std::string& input)
     {
         //std::string u1 = this->username;
         
-        user user1;
-        user1.set_name(this->username);
+        //user user1;
+        //user1.set_name(this->username);
         
         list_request l_request;
-        l_request.set_allocated_user1(&user1);
+        l_request.set_user1(username);
         
         ClientContext context;
         list_response l_response;

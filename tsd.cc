@@ -102,8 +102,8 @@ public:
         Json::Value users;
         reader.parse(ip_users_file, users);
         
-        std::string u1 = request->user1().name();
-        std::string u2 = request->user2().name();
+        std::string u1 = request->user1();
+        std::string u2 = request->user2();
         
         if (users["users"].isMember(u1) and users["users"].isMember(u2))
         {
@@ -141,8 +141,8 @@ public:
         Json::Value users;
         reader.parse(ip_users_file, users);
         
-        std::string u1 = request->user1().name();
-        std::string u2 = request->user2().name();
+        std::string u1 = request->user1();
+        std::string u2 = request->user2();
         
         if (users.isMember(u1) and users.isMember(u2))
           {
@@ -175,7 +175,7 @@ public:
         Json::Reader reader;
         Json::Value users;
         reader.parse(ip_users_file, users);
-        std::string u1 = request->user1().name();
+        std::string u1 = request->user1();
         
         if (users["users"].isMember(u1))
           {
