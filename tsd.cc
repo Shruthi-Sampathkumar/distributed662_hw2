@@ -165,7 +165,7 @@ public:
         std::string u1 = request->user1();
         std::string u2 = request->user2();
         
-        if (users["users"].isMember(u1) and users["users"].isMember(u2) and strcmp(u1,u2)!=0)
+        if (users["users"].isMember(u1) and users["users"].isMember(u2) and !(u1==u2))
           {
               //removing the user2 from following list of user1
               Json::Value new_items = Json::arrayValue;
