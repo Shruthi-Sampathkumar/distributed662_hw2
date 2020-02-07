@@ -60,7 +60,7 @@ public:
     struct current_timeline members[50];
     current_members = 0;
     std::string username = "";
-    unordered_map<string, std::shared_ptr<ClientReaderWriter<post, post>>> members;
+    unordered_map<std::tring, ClientReaderWriter<post, post>*> members;
     
     
     //add user to the database
@@ -265,7 +265,7 @@ public:
     {
         //members[current_members].name
         std::vector<post> received_posts;
-        std::string_ref user_ref = context->client_metadata().find("user")->second;
+        grpc::string_ref user_ref = context->client_metadata().find("user")->second;
         std::string user(user_ref.begin(), user_ref.end());
         
         //add the user stream
