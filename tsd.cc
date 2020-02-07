@@ -147,8 +147,8 @@ public:
         if (users["users"].isMember(u1) and users["users"].isMember(u2))
           {
               //removing the user2 from following list of user1
-              Json::Value new_items;
-              Json::Value new_followers;
+              Json::arrayValue new_items;
+              Json::arrayValue new_followers;
               int c = 0;
               for(int i = 0; i<users["users"][u1]["following"].size(); i++)
               {
