@@ -267,6 +267,15 @@ IReply Client::processCommand(std::string& input)
         
     }
     
+    else if (strcmp(command, "TIMELINE")==0)
+    {
+        //IReply ire;
+        //ire.comm_status = SUCCESS;
+        //ire.grpc_status = Status Status::OK;
+        processTimeline();
+        
+    }
+    
     //else if (strcmp(command, "TIMELINE")==0)
     //{
         //IReply ire;
