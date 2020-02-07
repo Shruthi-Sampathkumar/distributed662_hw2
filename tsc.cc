@@ -166,11 +166,11 @@ IReply Client::processCommand(std::string& input)
     
     if (strcmp(command, "FOLLOW")==0)
     {
-        std::string u1 = this->username;
+        //std::string u1 = this->username;
         std::string u2 = newString1[1];
 
         user user1, user2;
-	    user1.set_name(u1);
+	    user1.set_name(this->username);
         user2.set_name(u2);
         
         follow_request f1_request;
@@ -198,11 +198,11 @@ IReply Client::processCommand(std::string& input)
     
     else if (strcmp(command, "UNFOLLOW")==0)
     {
-        std::string u1 = username;
+        //std::string u1 = username;
         std::string u2 = newString1[1];
         
         user user1, user2;
-        user1.set_name(u1);
+        user1.set_name(this->username);
         user2.set_name(u2);
         
         unfollow_request f2_request;
@@ -228,10 +228,10 @@ IReply Client::processCommand(std::string& input)
     
     else if (strcmp(command, "LIST")==0)
     {
-        std::string u1 = this->username;
+        //std::string u1 = this->username;
         
         user user1;
-        user1.set_name(u1);
+        user1.set_name(this->username);
         
         list_request l_request;
         l_request.set_allocated_user1(&user1);
