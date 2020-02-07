@@ -193,9 +193,7 @@ IReply Client::processCommand(std::string& input)
             std::cout << "Follow request successful : " << f1_response.success_status()  << std::endl;
         }
         
-        }
-    
-    
+    }
     else if (strcmp(command, "UNFOLLOW")==0)
     {
         //std::string u1 = username;
