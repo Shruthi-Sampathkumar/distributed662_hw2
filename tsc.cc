@@ -102,7 +102,7 @@ int Client::connectTo()
     IReply ire;
     ClientContext context;
     std::string user1;
-    user1.set_name(this->username);
+    user1.set_user1(this->username);
     follow_response f1_response;
     
     Status status = stub_->addUser(&context, user1, &f1_response);
