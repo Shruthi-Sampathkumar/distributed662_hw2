@@ -181,15 +181,15 @@ IReply Client::processCommand(std::string& input)
         follow_response f1_response;
         
         Status status = stub_->addTo(&context, f1_request, &f1_response);
-        //ire.grpc_status = status;
+        ire.grpc_status = status;
         if (!status.ok())
         {
-            //ire.comm_status = FAILURE_UNKNOWN;
+            ire.comm_status = FAILURE_UNKNOWN;
             std::cout << "addTo rpc failed." << std::endl;
         }
         else
         {
-            //ire.comm_status = SUCCESS;
+            ire.comm_status = SUCCESS;
             std::cout << "Follow request successful : " << f1_response.success_status()  << std::endl;
         }
         
@@ -213,15 +213,15 @@ IReply Client::processCommand(std::string& input)
         unfollow_response f2_response;
         
         Status status = stub_->removeFrom(&context, f2_request, &f2_response);
-        //ire.grpc_status = status;
+        ire.grpc_status = status;
         if (!status.ok())
         {
-            //ire.comm_status = FAILURE_UNKNOWN;
+            ire.comm_status = FAILURE_UNKNOWN;
             std::cout << "removeFrom rpc failed : " << std::endl;
         }
         else
         {
-            //ire.comm_status = SUCCESS;
+            ire.comm_status = SUCCESS;
             std::cout << "Unfollow request successful : " << f2_response.success_status() << std::endl;
         }
     }
@@ -265,6 +265,7 @@ IReply Client::processCommand(std::string& input)
                 ire.comm_status = FAILURE_UNKNOWN;
             }
         }
+        
     }
     // ------------------------------------------------------------
 	// GUIDE 2:
