@@ -6,6 +6,7 @@
 #include <unistd.h>
 #include <grpc++/grpc++.h>
 #include "client.h"
+#include <thread>
 
 #include "timeline.grpc.pb.h"
 #include "timeline.pb.h"
@@ -324,11 +325,15 @@ void Client::processTimeline()
     // and you can terminate the client program by pressing
     // CTRL-C (SIGINT)
 	// ------------------------------------------------------------
-    /*
+    
     ClientContext context;
+    
+    context.AddMetadata("user", username.c_str());
     
     std::shared_ptr<ClientReaderWriter<post, post> > stream(
         stub_->updates(&context));
+    
+    
     
     //writing a post
     std::thread writer([stream]()
@@ -336,9 +341,9 @@ void Client::processTimeline()
         while (1)
         {
             post post1;
-            post1.set_content(getPostMessage())
-            //std::string new_post = getPostMessage();
-            //post1.set_content(new_post);
+            std::string new_post = getPostMessage();
+            //to_send = new_post + " " + username;
+            post1.set_content(new_post);
             
             std::cout << "Updating post : " << new_post << std::endl;
             stream->Write(new_post);
@@ -348,17 +353,22 @@ void Client::processTimeline()
     
     
     //reading new posts from the following users
-    post updated_timeline;
-    while (stream->Read(&updated_timeline))
+    std::thread reader([stream]()
     {
-        std::cout << "The updated timeline is : " << updated_timeline.content() << cout::endl;
-    }
+            post p;
+            while(stream->Read(&p)){
+                std::cout << p.content() << std::endl;
+            }
+    });
+    
+    //Wait for the threads to finish
     writer.join();
+    reader.join();
+    
     Status status = stream->Finish();
-    if (!status.ok()) {
+    if (!status.ok())
+    {
       std::cout << "RouteChat rpc failed." << std::endl;
     }
-     */
-    
-    
+     
 }

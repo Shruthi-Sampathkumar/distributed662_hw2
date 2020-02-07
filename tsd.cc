@@ -11,6 +11,7 @@
 #include <string>
 #include <grpc++/grpc++.h>
 #include <bits/stdc++.h>
+#include <unordered_map>
 
 //#include <json/value.h>
 //#include <jsoncpp/json/json.h>
@@ -47,6 +48,20 @@ using timeline::list_response;
 
 class timelineImpl final : public social_network::Service {
 public:
+    
+    //struct current_timeline
+    //{
+        //char name[50][128];
+        //std::shared_ptr<ClientReaderWriter<post, post>> stream
+        
+    //};
+    
+    struct current_timeline members[50];
+    current_members = 0;
+    std::string username = "";
+    unordered_map<string, std::shared_ptr<ClientReaderWriter<post, post>>> members;
+    
+    
     //add user to the database
     Status addUser(ServerContext* context,const user* user1,
     follow_response* response)
@@ -55,7 +70,7 @@ public:
         if (!ip_users_file.is_open())
         {
           std::cout << "Failed to open users.json " << std::endl;
-          return Status::OK;
+          return Status(StatusCode::INVALID_ARGUMENT, "Cannot open users.json file!");
         }
         
         Json::Value users;
@@ -69,6 +84,9 @@ public:
         {
             Json::Value followers(Json::arrayValue);
             Json::Value following(Json::arrayValue);
+            
+            following.append(u1);
+            followers.append(u1);
             
             users["users"][u1]["name"] = u1;
             users["users"][u1]["following"] = following;
@@ -95,7 +113,7 @@ public:
         if (!ip_users_file.is_open())
         {
           std::cout << "Failed to open users.json " << std::endl;
-          return Status::OK;
+          return Status(StatusCode::INVALID_ARGUMENT, "Cannot open users.json file!");
         }
         
         Json::Reader reader;
@@ -115,13 +133,14 @@ public:
             std::ofstream op_users_file("users.json");
             op_users_file << std::setw(4) << users << std::endl;
             response->set_success_status(0);
+            return Status::OK;
             
         }
         else
         {
             response->set_success_status(1);
         }
-        return Status::OK;
+        return Status(StatusCode::INVALID_ARGUMENT, "Invalid user input!");
         
     }
     
@@ -134,7 +153,7 @@ public:
         if (!ip_users_file.is_open())
         {
           std::cout << "Failed to open users.json " << std::endl;
-          return Status::OK;
+          return Status(StatusCode::INVALID_ARGUMENT, "Cannot open users.json file!");
         }
         
         Json::Reader reader;
@@ -144,7 +163,7 @@ public:
         std::string u1 = request->user1();
         std::string u2 = request->user2();
         
-        if (users["users"].isMember(u1) and users["users"].isMember(u2))
+        if (users["users"].isMember(u1) and users["users"].isMember(u2) and strcmp(u1,u2)!=0)
           {
               //removing the user2 from following list of user1
               Json::Value new_items = Json::arrayValue;
@@ -174,13 +193,13 @@ public:
               std::ofstream op_users_file("users.json");
               op_users_file << std::setw(4) << users << std::endl;
               response->set_success_status(0);
+              return Status::OK;
           }
           else
           {
               response->set_success_status(1);
+              return Status(StatusCode::INVALID_ARGUMENT, "Invalid user input!");
           }
-          
-        return Status::OK;
     }
     
     //if the command was "LIST"
@@ -192,7 +211,7 @@ public:
         if (!ip_users_file.is_open())
         {
           std::cout << "Failed to open users.json " << std::endl;
-          return Status::OK;
+          return Status(StatusCode::INVALID_ARGUMENT, "Cannot open users.json file!");
         }
         
         Json::Reader reader;
@@ -228,16 +247,96 @@ public:
                   response->add_active_users(value);
                   
               }
+              return Status::OK;
           }
           else
           {
               //set the response variable to indicate failure
               response->set_success_status(1);
+              return Status(StatusCode::INVALID_ARGUMENT, "Invalid user argument!");
           }
           
-        return Status::OK;
+        
     }
     
+    
+    Status updates(ServerContext* context, ServerReaderWriter<post, post>* stream)
+    {
+        //members[current_members].name
+        std::vector<post> received_posts;
+        std::string_ref user_ref = context->client_metadata().find("user")->second;
+        std::string user(user_ref.begin(), user_ref.end());
+        
+        //add the user stream
+        members[user]=stream;
+        
+        while (stream->Read(&note))
+        {
+            post post1;
+            std::string u1 = user;
+            
+            //reading the timeline json file
+            std::ifstream timeline_read("timeline.json", std::ifstream::binary);
+            if (!timeline_read.is_open())
+            {
+              std::cout << "Failed to open timeline.json " << std::endl;
+              return Status(StatusCode::INVALID_ARGUMENT, "Cannot open users.json file!");
+            }
+            
+            //reading the users json file
+            std::ifstream ip_users_file("users.json", std::ifstream::binary);
+            if (!ip_users_file.is_open())
+            {
+              std::cout << "Failed to open users.json " << std::endl;
+              return Status(StatusCode::INVALID_ARGUMENT, "Cannot open timeline.json file!");
+            }
+            
+            Json::Reader reader1, reader2;
+            Json::Value timeline_parsed, users;
+            
+            reader1.parse(timeline_read, timeline_parsed);
+            reader2.parse(ip_users_file, users);
+            
+            
+            //check if the posting user is a part of the users database and then carry out the update actions
+            if (users["users"].isMember(u1))
+            {
+                
+                Json::Value followers = users["users"][u1]["followers"];
+                
+                for (const auto& element : followers)
+                {
+                    std::string value = element.asString();
+                    Json::Value updated_timeline = Json::arrayValue;
+                    
+                    //updating the timeline json object of the followers
+                    updated_timeline[0] = post->content();
+                    int c = 1;
+                    for(int i = 0; i<timeline_parsed[value].size()-1; i++)
+                    {
+                        updated_timeline[c] = timeline_parsed[value][i];
+                        c++;
+                    }
+                    
+                    timeline_parsed[value] = updated_timeline;
+                    
+                //displying the updated timeline to followers who are in timeline mode
+                    stream_object = members[value];
+                    for(int i = 0; i<timeline_parsed[value].size(); i++)
+                    {
+                        stream_object->Write(timeline_parsed[value][i]);
+                    }
+                }
+                
+                //writing the updated timeline json object to timeline database
+                std::ofstream op_timeline_file("timeline.json");
+                op_timeline_file << std::setw(4) << timeline_parsed << std::endl;
+                return Status::OK;
+            }
+        }
+        
+        return Status(StatusCode::INVALID_ARGUMENT, "Invalid user input!");
+    }
 };
 
 
