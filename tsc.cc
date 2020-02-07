@@ -101,7 +101,7 @@ int Client::connectTo()
     //create_user
     IReply ire;
     ClientContext context;
-    user user1;
+    std::strng user1;
     user1.set_name(this->username);
     follow_response f1_response;
     
