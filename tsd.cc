@@ -146,9 +146,31 @@ public:
         
         if (users["users"].isMember(u1) and users["users"].isMember(u2))
           {
-              std::cout << "Json contains both in unfollow" << std::endl;
-              users["users"][u1]["following"].removeMember(u2);
-              users["users"][u2]["followers"].removeMember(u1);
+              //removing the user2 from following list of user1
+              Json::Value new_items;
+              Json::Value new_followers;
+              int c = 0;
+              for(int i = 0; i<users["users"][u1]["following"].size(); i++)
+              {
+                  if(users["users"][u1]["following"][i].compare(u2) != 0)
+                  {
+                      new_items[c] = users["users"][u1]["following"][i];
+                      c++;
+                  }
+              }
+              users["users"][u1]["following"] = new_items;
+              
+              //removing user1 from followers list of user2
+              int d = 0;
+              for(int i = 0; i<users["users"][u2]["followers"].size(); i++)
+              {
+                  if(users["users"][u2]["followers"][i].compare(u2) != 0){
+                      new_followers[d] = users["users"][u1]["followers"][i];
+                      d++;
+                  }
+              }
+              users["users"][u2]["followers"] = new_followers;
+              
               std::ofstream op_users_file("users.json");
               op_users_file << std::setw(4) << users << std::endl;
               response->set_success_status(0);

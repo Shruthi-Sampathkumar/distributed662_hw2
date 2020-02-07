@@ -330,20 +330,34 @@ void Client::processTimeline()
     std::shared_ptr<ClientReaderWriter<post, post> > stream(
         stub_->updates(&context));
     
+    //writing a post
     std::thread writer([stream]()
     {
-        
-        std::string new_post = getPostMessage();
-        
-        
-      for (const RouteNote& note : notes) {
-        std::cout << "Sending message " << note.message()
-                  << " at " << note.location().latitude() << ", "
-                  << note.location().longitude() << std::endl;
-        stream->Write(note);
-      }
-      stream->WritesDone();
+        while (1)
+        {
+            post post1;
+            post1.set_content(getPostMessage())
+            //std::string new_post = getPostMessage();
+            //post1.set_content(new_post);
+            
+            std::cout << "Updating post : " << new_post << std::endl;
+            stream->Write(new_post);
+        }
+        stream->WritesDone();
     });
-     */
+    
+    
+    //reading new posts from the following users
+    post updated_timeline;
+    while (stream->Read(&updated_timeline))
+    {
+        std::cout << "The updated timeline is : " << updated_timeline.content() << cout::endl;
+    }
+    writer.join();
+    Status status = stream->Finish();
+    if (!status.ok()) {
+      std::cout << "RouteChat rpc failed." << std::endl;
+    }
+    */
     
 }
