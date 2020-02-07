@@ -358,6 +358,7 @@ void Client::processTimeline()
     if (!status.ok()) {
       std::cout << "RouteChat rpc failed." << std::endl;
     }
-    */
+     */
+    
     
 }
