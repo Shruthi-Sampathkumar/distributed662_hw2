@@ -12,6 +12,7 @@
 #include <grpc++/grpc++.h>
 #include <bits/stdc++.h>
 #include <unordered_map>
+#include <grpc++/support/string_ref.h>
 
 //#include <json/value.h>
 //#include <jsoncpp/json/json.h>
@@ -270,7 +271,7 @@ public:
         //add the user stream
         members[user]=stream;
         
-        while (stream->Read(&note))
+        while (stream->Read(&post))
         {
             post post1;
             std::string u1 = user;
