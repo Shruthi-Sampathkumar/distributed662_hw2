@@ -32,6 +32,7 @@ using grpc::ServerBuilder;
 using grpc::ServerContext;
 using grpc::Status;
 using grpc::StatusCode;
+using grpc::ServerReaderWriter
 
 using timeline::social_network;
 using timeline::user;
