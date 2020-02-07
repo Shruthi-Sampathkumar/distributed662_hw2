@@ -265,16 +265,18 @@ public:
     Status updates(ServerContext* context, ServerReaderWriter<post, post>* stream)
     {
         //members[current_members].name
-        std::vector<post> received_posts;
+        //std::vector<post> received_posts;
         grpc::string_ref user_ref = context->client_metadata().find("user")->second;
         std::string user(user_ref.begin(), user_ref.end());
         
         //add the user stream
         members[user]=stream;
         
-        while (stream->Read(&post))
+        post post1;
+        
+        while (stream->Read(&post1))
         {
-            post post1;
+            //post post1;
             std::string u1 = user;
             
             //reading the timeline json file
@@ -313,7 +315,7 @@ public:
                     
                     //updating the timeline json object of the followers
                     //std::string tmp = post->content();
-                    updated_timeline[0] = Json::Value post->content();
+                    updated_timeline[0] = post1->content();
                     
                     int c = 1;
                     for(int i = 0; i<timeline_parsed[value].size()-1; i++)
