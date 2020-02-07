@@ -355,7 +355,7 @@ void Client::processTimeline()
             post1.set_content(new_post);
             
             std::cout << "Updating post : " << new_post << std::endl;
-            stream->Write(new_post);
+            stream->Write(post1);
         }
         stream->WritesDone();
     });
