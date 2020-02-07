@@ -330,7 +330,7 @@ public:
                     //stream_object = members[value];
                     for(int i = 0; i<timeline_parsed[value].size(); i++)
                     {
-                        members[value]->Write(timeline_parsed[value][i]);
+                        members[value]->Write(timeline_parsed[value][i].asString());
                     }
                 }
                 
