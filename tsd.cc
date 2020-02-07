@@ -146,6 +146,7 @@ public:
         
         if (users.isMember(u1) and users.isMember(u2))
           {
+              std::cout << "Json contains both in unfollow" << std::endl;
               users["users"][u1]["following"].removeMember(u2);
               users["users"][u2]["followers"].removeMember(u1);
               std::ofstream op_users_file("users.json");

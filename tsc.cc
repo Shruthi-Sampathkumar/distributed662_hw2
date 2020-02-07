@@ -265,6 +265,14 @@ IReply Client::processCommand(std::string& input)
         }
         
     }
+    
+    else if (strcmp(command, "TIMELINE")==0)
+    {
+        IReply ire;
+        
+        
+        ire.grpc_status = status;
+    }
     // ------------------------------------------------------------
 	// GUIDE 2:
 	// Then, you should create a variable of IReply structure
@@ -316,5 +324,25 @@ void Client::processTimeline()
     // and you can terminate the client program by pressing
     // CTRL-C (SIGINT)
 	// ------------------------------------------------------------
+    
+    ClientContext context;
+    
+    std::shared_ptr<ClientReaderWriter<post, post> > stream(
+        stub_->updates(&context));
+    
+    std::thread writer([stream]()
+    {
+        
+        std::string new_post = getPostMessage();
+        
+        
+      for (const RouteNote& note : notes) {
+        std::cout << "Sending message " << note.message()
+                  << " at " << note.location().latitude() << ", "
+                  << note.location().longitude() << std::endl;
+        stream->Write(note);
+      }
+      stream->WritesDone();
+    });
     
 }
