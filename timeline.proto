@@ -2,9 +2,6 @@ syntax = "proto3";
 
 package timeline;
 
-message user {
-	string name = 1;
-}
 
 message post {
 	string content = 1;
@@ -12,8 +9,8 @@ message post {
 }
 
 message follow_request {
-	user user1 = 1;
-	user user2 = 2;
+	string user1 = 1;
+	string user2 = 2;
 }
 
 message follow_response {
@@ -22,8 +19,8 @@ message follow_response {
 
 
 message unfollow_request {
-	user user1 = 1;
-	user user2 = 2;
+	string user1 = 1;
+	string user2 = 2;
 }
 
 message unfollow_response {
@@ -32,7 +29,7 @@ message unfollow_response {
 
 
 message list_request {
-	user user1 = 1;
+	string user1 = 1;
 }
 
 message list_response {
