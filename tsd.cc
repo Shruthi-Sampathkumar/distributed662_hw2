@@ -113,7 +113,7 @@ public:
             Json::Value timeline_content(Json::arrayValue);
             timeline_parsed[u1] = timeline_content;
             //dumping the json object in timeline json file
-            std::ofstream op_timeline_file("users.json");
+            std::ofstream op_timeline_file("timeline.json");
             op_timeline_file << std::setw(4) << timeline_parsed << std::endl;
             
         }
