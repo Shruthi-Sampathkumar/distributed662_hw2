@@ -147,7 +147,7 @@ public:
                     follow_response* response)
     {
         //reading the json file
-        std::cout << "Command received from the client is FOLLOW " << std::endl;
+        //std::cout << "Command received from the client is FOLLOW " << std::endl;
         std::ifstream ip_users_file("users.json", std::ifstream::binary);
         if (!ip_users_file.is_open())
         {
@@ -176,10 +176,10 @@ public:
             }
             
             users["users"][u1]["following"].append(u2);
-            std::cout << "Added Following " << std::endl;
+            //std::cout << "Added Following " << std::endl;
             
             users["users"][u2]["followers"].append(u1);
-            std::cout << "Added Followers " << std::endl;
+            //std::cout << "Added Followers " << std::endl;
             std::ofstream op_users_file("users.json");
             op_users_file << std::setw(4) << users << std::endl;
             response->set_success_status(0);
@@ -280,8 +280,8 @@ public:
               //setting the response variable
               response->set_success_status(0);
               
-              std::cout << "Json file contains  " << u1 << std::endl;
-              std::cout << "The followers are : " << std::endl;
+              //std::cout << "Json file contains  " << u1 << std::endl;
+              //std::cout << "The followers are : " << std::endl;
               
               Json::Value names= users["users"][u1]["followers"];
               for (const auto& element : names)
@@ -295,7 +295,7 @@ public:
               Json::Value  v = users["users"];
               //the keys (names) in users json file is extracted
               Json::Value::Members active_users = v.getMemberNames();
-              std::cout << "The active members are " << std::endl;
+              //std::cout << "The active members are " << std::endl;
               for (const auto& element : active_users)
               {
                   std::string value = element;
@@ -372,7 +372,7 @@ public:
                         continue;
                     }
                     std::string value = element.asString();
-                    std::cout << "Processing for the follower : " << value << std::endl;
+                    //std::cout << "Processing for the follower : " << value << std::endl;
                     Json::Value updated_timeline = Json::arrayValue;
                     
                     //updating the timeline json object of the followers
