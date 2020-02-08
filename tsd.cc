@@ -338,7 +338,12 @@ public:
                 
                 for (const auto& element : followers)
                 {
+                    if (!element)
+                    {
+                        continue;
+                    }
                     std::string value = element.asString();
+                    std::cout << "Processing for the follower : " << value << std::endl;
                     Json::Value updated_timeline = Json::arrayValue;
                     
                     //updating the timeline json object of the followers
