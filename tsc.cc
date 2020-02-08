@@ -17,6 +17,7 @@ using grpc::ClientReader;
 using grpc::ClientReaderWriter;
 using grpc::ClientWriter;
 using grpc::Status;
+using grpc::StatusCode;
 
 using timeline::social_network;
 using timeline::user;
