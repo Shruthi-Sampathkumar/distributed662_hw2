@@ -54,7 +54,10 @@ using timeline::list_response;
 class timelineImpl final : public social_network::Service {
 public:
     
+    //'members' store the stream object information of the users who are in timeline mode currently
     std::unordered_map<std::string, ServerReaderWriter<post, post>* > members;
+    //'active_members' store the users who are active currently so that another machine cannot login with the same username
+    std::unordered_map<std::string, int> > active_members;
     //std::mutex mutex_users, mutex_timeline;
     //std::unique_lock<std::mutex> lock_users(mutex_users, std::defer_lock);
     //std::unique_lock<std::mutex> lock_timeline(mutex_timeline, std::defer_lock);
@@ -103,9 +106,11 @@ public:
         
         std::string u1 = user1->name();
         
-        //check if the user already is existing in the database
+        //if the user is not in the database
         if (!users["users"].isMember(u1))
         {
+            //add the user to the current active members list
+            active_members[u1]=1;
             
             //adding an entry for the user in the users database
             Json::Value followers(Json::arrayValue);
@@ -143,6 +148,17 @@ public:
             
         }
         
+        
+        //if the user is in database but not active currently (returning user)
+        else if (active_members.find(u1)==active_members.end())
+        {
+            active_members[u1]=1;
+            response->set_success_status(0);
+            return Status::OK;
+        }
+        
+        
+        //if the user is in database and also active currently
         response->set_success_status(1);
         
         return Status(StatusCode::ALREADY_EXISTS, "User already exists!");
