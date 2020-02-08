@@ -329,7 +329,7 @@ void Client::processTimeline()
             
             auto t = std::chrono::system_clock::now();
             std::time_t t1 = std::chrono::system_clock::to_time_t(t);
-            post1.set_timestamp(std::ctime(&t1));
+            post1.set_timestamp(std::ctime(t1));
             
             //std::cout << "Updating post : " << new_post << std::endl;
             stream->Write(post1);
@@ -344,7 +344,10 @@ void Client::processTimeline()
             post p;
             while(stream->Read(&p))
             {
-                displayPostMessage(p.owner(), p.content(), p.timestamp());
+                struct tm tm;
+                strptime(p.timestamp(), "%a %b %d %OH:%M:%OS %Y", &tm);
+                time_t t = mktime(&tm);
+                displayPostMessage(p.owner(), p.content(), t);
                 //std::cout << "Received from server " << std::endl;
                 //std::cout << p.content() << std::endl;
             }
