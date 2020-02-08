@@ -13,6 +13,8 @@
 #include <bits/stdc++.h>
 #include <unordered_map>
 #include <grpc++/support/string_ref.h>
+#include <chrono>
+#include <ctime>
 //#include <mutex>
 //#include <json/value.h>
 //#include <jsoncpp/json/json.h>
@@ -124,7 +126,13 @@ public:
             //adding an entry for the user in the timeline database
             
             Json::Value timeline_content(Json::arrayValue);
-            timeline_parsed[u1] = timeline_content;
+            Json::Value timeline_owner(Json::arrayValue);
+            Json::Value timeline_timestamp(Json::arrayValue);
+            
+            timeline_parsed[u1]["content"] = timeline_content;
+            timeline_parsed[u1]["owner"] = timeline_owner;
+            timeline_parsed[u1]["timestamp"] = timeline_timestamp;
+            
             //dumping the json object in timeline json file
             std::ofstream op_timeline_file("timeline.json");
             op_timeline_file << std::setw(4) << timeline_parsed << std::endl;
@@ -334,11 +342,12 @@ public:
         members[user]=stream;
         
         post post1;
+        std::string u1 = user;
         
         while (stream->Read(&post1))
         {
             //post post1;
-            std::string u1 = user;
+            
             
             //reading the timeline json file
             std::ifstream timeline_read("timeline.json", std::ifstream::binary);
@@ -386,22 +395,29 @@ public:
                     updated_timeline.append(post1.content());
                     
                     int c = 1;
-                    for(int i = 0; i<timeline_parsed[value].size() && c<20; i++)
+                    for(int i = 0; i<timeline_parsed[value]["content"].size() && c<20; i++)
                     {
-                        updated_timeline.append(timeline_parsed[value][i]);
+                        updated_timeline.append(timeline_parsed[value]["content"][i]);
                         c++;
                     }
                     
-                    timeline_parsed[value] = updated_timeline;
+                    //adding information to the timeline json object
+                    timeline_parsed[value]["content"] = updated_timeline;
+                    timeline_parsed[value]["owner"].append(post1.owner());
+                    timeline_parsed[value]["timestamp"].append(post1.timestamp());
                     
                     //if the user is currently in timeline mode, display the updated timeline
-                    if (members.find(value)!=members.end())
+                    if (members.find(value)!=members.end() and value!=post1.owner())
                     {
-                        for(int i = 0; i<timeline_parsed[value].size(); i++)
+                        for(int i = 0; i<timeline_parsed[value]["content"].size(); i++)
                         {
-                            post tmp;
+                                post tmp;
+                            tmp.set_content(timeline_parsed[value]["content"][i].asString());
+                            tmp.set_owner(timeline_parsed[value]["owner"][i].asString());
+                            tmp.set_timestamp(timeline_parsed[value]["timestamp"][i].asString());
                             tmp.set_content(timeline_parsed[value][i].asString());
-                            members[value]->Write(tmp);
+                            
+                                members[value]->Write(tmp);
                         }
                     }
                     

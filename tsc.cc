@@ -7,6 +7,7 @@
 #include <grpc++/grpc++.h>
 #include "client.h"
 #include <thread>
+#include <chrono>
 #include <ctime>
 
 #include "timeline.grpc.pb.h"
@@ -321,10 +322,15 @@ void Client::processTimeline()
             std::string new_post = getPostMessage();
             new_post.erase(std::remove(new_post.begin(), new_post.end(), '\n'),
             new_post.end());
-            //to_send = new_post + " " + username;
+
             post1.set_content(new_post);
+            post1.set_owner(username);
             
-            std::cout << "Updating post : " << new_post << std::endl;
+            auto t = std::chrono::system_clock::now();
+            std::time_t t1 = std::chrono::system_clock::to_time_t(t);
+            post1.set_timestamp(std::ctime(t1));
+            
+            //std::cout << "Updating post : " << new_post << std::endl;
             stream->Write(post1);
         }
         stream->WritesDone();
@@ -335,9 +341,11 @@ void Client::processTimeline()
     std::thread reader([stream]()
     {
             post p;
-            while(stream->Read(&p)){
-                std::cout << "Received from server " << std::endl;
-                std::cout << p.content() << std::endl;
+            while(stream->Read(&p))
+            {
+                displayPostMessage(p.owner(), p.content(), p.timestamp());
+                //std::cout << "Received from server " << std::endl;
+                //std::cout << p.content() << std::endl;
             }
     });
     

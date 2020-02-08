@@ -9,7 +9,7 @@ message user {
 message post {
     string owner = 1;
 	string content = 2;
-    time_t timestamp = 3;
+    string timestamp = 3;
 	
 }
 
