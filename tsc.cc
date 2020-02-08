@@ -314,7 +314,7 @@ void Client::processTimeline()
     std::string u = username.c_str();
     
     //writing a post
-    std::thread writer([stream]()
+    std::thread writer([stream, u]()
     {
         while (1)
         {
