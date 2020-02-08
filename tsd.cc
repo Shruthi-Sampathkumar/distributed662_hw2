@@ -248,9 +248,15 @@ public:
               response->set_success_status(0);
               return Status::OK;
           }
+        //if u1 or u2 is invalid or the same
+        else if (!users["users"].isMember(u1) or !users["users"].isMember(u2) or u1==u2)
+        {
+            response->set_success_status(1);
+            return Status::OK;
+        }
           else
           {
-              response->set_success_status(1);
+              response->set_success_status(2);
               return Status::OK;
               //return Status(StatusCode::INVALID_ARGUMENT, "Invalid user input!");
           }

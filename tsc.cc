@@ -212,8 +212,16 @@ IReply Client::processCommand(std::string& input)
         }
         else
         {
-            ire.comm_status = SUCCESS;
-            std::cout << "Unfollow request successful : " << f2_response.success_status() << std::endl;
+            if (f2_response.success_status()==1)
+            {
+                ire.comm_status = FAILURE_INVALID_USERNAME;
+            }
+            else if (f2_response.success_status()==0)
+            {
+                ire.comm_status = SUCCESS;
+            }
+            
+            //std::cout << "Unfollow request successful : " << f2_response.success_status() << std::endl;
         }
     }
     
