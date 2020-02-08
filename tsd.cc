@@ -439,9 +439,9 @@ public:
                     if (members.find(value)!=members.end() and value!=post1.owner())
                     {
                         post tmp;
-                        tmp.set_content(post1.content().asString());
-                        tmp.set_owner(post1.owner().asString());
-                        tmp.set_timestamp(post1.timeline().asString());
+                        tmp.set_content(post1.content());
+                        tmp.set_owner(post1.owner());
+                        tmp.set_timestamp(post1.timeline());
                         
                             members[value]->Write(tmp);
                         
