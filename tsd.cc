@@ -51,16 +51,6 @@ using timeline::list_response;
 class timelineImpl final : public social_network::Service {
 public:
     
-    //struct current_timeline
-    //{
-        //char name[50][128];
-        //std::shared_ptr<ClientReaderWriter<post, post>> stream
-        
-    //};
-    
-    //struct current_timeline members[50];
-    //current_members = 0;
-    //std::string username = "";
     std::unordered_map<std::string, ServerReaderWriter<post, post>* > members;
     
     
@@ -68,34 +58,61 @@ public:
     Status addUser(ServerContext* context,const user* user1,
     follow_response* response)
     {
+        //reading the timeline json file
+        std::ifstream timeline_read("timeline.json", std::ifstream::binary);
+        if (!timeline_read.is_open())
+        {
+          std::cout << "Failed to open timeline.json " << std::endl;
+            response->set_success_status(1);
+          return Status(StatusCode::INVALID_ARGUMENT, "Cannot open users.json file!");
+        }
+        
+        //reading the users json file
         std::ifstream ip_users_file("users.json", std::ifstream::binary);
         if (!ip_users_file.is_open())
         {
           std::cout << "Failed to open users.json " << std::endl;
+            response->set_success_status(1);
           return Status(StatusCode::INVALID_ARGUMENT, "Cannot open users.json file!");
         }
         
-        Json::Value users;
-        Json::Reader reader;
-        reader.parse(ip_users_file, users);
+        //Json::Value users;
+        //Json::Reader reader;
+        //reader.parse(ip_users_file, users);
+        
+        
+        Json::Reader reader1, reader2;
+        Json::Value timeline_parsed, users;
+        
+        reader1.parse(timeline_read, timeline_parsed);
+        reader2.parse(ip_users_file, users);
         
         std::string u1 = user1->name();
         
         //check if the user already is existing in the database
         if (!users["users"].isMember(u1))
         {
+            //adding an entry for the user in the users database
             Json::Value followers(Json::arrayValue);
             Json::Value following(Json::arrayValue);
-            
+            //adding self follower and followee
             following.append(u1);
             followers.append(u1);
             
             users["users"][u1]["name"] = u1;
             users["users"][u1]["following"] = following;
             users["users"][u1]["followers"] = followers;
-            
+            //dumping the json object in users json file
             std::ofstream op_users_file("users.json");
             op_users_file << std::setw(4) << users << std::endl;
+            
+            
+            //adding an entry for the user in the timeline database
+            Json::Value timeline_content(Json::arrayValue);
+            timeline_parsed[u1] = timeline_content;
+            //dumping the json object in timeline json file
+            std::ofstream op_timeline_file("users.json");
+            op_timeline_file << std::setw(4) << timeline_parsed << std::endl;
             
         }
         
@@ -104,6 +121,7 @@ public:
         return Status::OK;
         
     }
+    
     
     //if the command was "FOLLOW"
     Status addTo(ServerContext* context, const follow_request* request,
