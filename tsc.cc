@@ -172,11 +172,13 @@ IReply Client::processCommand(std::string& input)
         {
             if (f1_response.success_status()==1)
             {
+                ire.grpc_status=Status::OK;
                 ire.comm_status = FAILURE_ALREADY_EXISTS;
                 //std::cout << "Already"
             }
             else if (f1_response.success_status()==2)
             {
+                ire.grpc_status=Status::OK;
                 ire.comm_status = FAILURE_INVALID_USERNAME;
             }
         }
@@ -266,7 +268,7 @@ IReply Client::processCommand(std::string& input)
     else
     {
         ire.comm_status = FAILURE_INVALID;
-        ire.grpc_status = Status::OK;
+        ire.grpc_status =  Status(StatusCode::INVALID_ARGUMENT, "Invalid Command!");
     }
     
     return ire;
