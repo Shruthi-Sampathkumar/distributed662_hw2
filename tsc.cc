@@ -347,7 +347,7 @@ void Client::processTimeline()
                 struct tm tm;
                 strptime(p.timestamp(), "%a %b %d %OH:%M:%OS %Y", &tm);
                 time_t t = mktime(&tm);
-                displayPostMessage(p.owner(), p.content(), t);
+                displayPostMessage(p.owner(), p.content(), &t);
                 //std::cout << "Received from server " << std::endl;
                 //std::cout << p.content() << std::endl;
             }
