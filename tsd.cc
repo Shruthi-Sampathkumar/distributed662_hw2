@@ -293,7 +293,7 @@ public:
               for (const auto& element : names)
               {
                   std::string value = element.asString();
-                  std::cout << value << std::endl;
+                  //std::cout << value << std::endl;
                   response->add_followers(value);
                   
               }
