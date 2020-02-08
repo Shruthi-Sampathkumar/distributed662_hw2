@@ -438,6 +438,14 @@ public:
                     //if the user is currently in timeline mode, display the updated timeline
                     if (members.find(value)!=members.end() and value!=post1.owner())
                     {
+                        post tmp;
+                        tmp.set_content(post1.content().asString());
+                        tmp.set_owner(post1.owner().asString());
+                        tmp.set_timestamp(post1.timeline().asString());
+                        
+                            members[value]->Write(tmp);
+                        
+                        /*
                         for(int i = 0; i<timeline_parsed[value]["content"].size(); i++)
                         {
                                 post tmp;
@@ -447,6 +455,7 @@ public:
                             
                                 members[value]->Write(tmp);
                         }
+                         */
                     }
                     
                 }
