@@ -127,21 +127,6 @@ int Client::connectTo()
 
 IReply Client::processCommand(std::string& input)
 {
-	// ------------------------------------------------------------
-	// GUIDE 1:
-	// In this function, you are supposed to parse the given input
-    // command and create your own message so that you call an 
-    // appropriate service method. The input command will be one
-    // of the followings:
-	//
-	// FOLLOW <username>
-	// UNFOLLOW <username>
-	// LIST
-    // TIMELINE
-	//
-	// - JOIN/LEAVE and "<username>" are separated by one space.
-	// ------------------------------------------------------------
-    
     //parsing the input. 'newString1' will contain the parsed result
     std::cout << "The input command is : " << input << std::endl;
     
@@ -207,9 +192,6 @@ IReply Client::processCommand(std::string& input)
         //std::string u1 = username;
         std::string u2 = newString1[1];
         
-        //user user1, user2;
-        //user1.set_name(this->username);
-        //user2.set_name(u2);
         
         unfollow_request f2_request;
         f2_request.set_user1(username);
@@ -234,10 +216,6 @@ IReply Client::processCommand(std::string& input)
     
     else if (strcmp(command, "LIST")==0)
     {
-        //std::string u1 = this->username;
-        
-        //user user1;
-        //user1.set_name(this->username);
         
         list_request l_request;
         l_request.set_user1(username);
@@ -274,53 +252,23 @@ IReply Client::processCommand(std::string& input)
         
     }
     
-    else
+    //if the command is timeline
+    else if (strcmp(command,"TIMELINE")==0)
     {
-        //IReply ire;
+        
         ire.comm_status = SUCCESS;
         ire.grpc_status = Status::OK;
-        //return ire
-        //processTimeline();
+        
         
     }
     
-    //else if (strcmp(command, "TIMELINE")==0)
-    //{
-        //IReply ire;
-        
-        
-        //ire.grpc_status = status;
-    //}
-    // ------------------------------------------------------------
-	// GUIDE 2:
-	// Then, you should create a variable of IReply structure
-	// provided by the client.h and initialize it according to
-	// the result. Finally you can finish this function by returning
-    // the IReply.
-	// ------------------------------------------------------------
+    //if the command is invalid
+    else
+    {
+        ire.comm_status = FAILURE_INVALID;
+        ire.grpc_status = Status::OK;
+    }
     
-	// ------------------------------------------------------------
-    // HINT: How to set the IReply?
-    // Suppose you have "Join" service method for JOIN command,
-    // IReply can be set as follow:
-    // 
-    //     // some codes for creating/initializing parameters for
-    //     // service method
-    //     IReply ire;
-    //     grpc::Status status = stub_->Join(&context, /* some parameters */);
-    //     ire.grpc_status = status;
-    //     if (status.ok()) {
-    //         ire.comm_status = SUCCESS;
-    //     } else {
-    //         ire.comm_status = FAILURE_NOT_EXISTS;
-    //     }
-    //      
-    //      return ire;
-    // 
-    // IMPORTANT: 
-    // For the command "LIST", you should set both "all_users" and 
-    // "following_users" member variable of IReply.
-	// ------------------------------------------------------------
     return ire;
 }
 
