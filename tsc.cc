@@ -324,7 +324,7 @@ void Client::processTimeline()
             new_post.end());
 
             post1.set_content(new_post);
-            post1.set_owner(username);
+            post1.set_owner(this->username);
             
             auto t = std::chrono::system_clock::now();
             std::time_t t1 = std::chrono::system_clock::to_time_t(t);
