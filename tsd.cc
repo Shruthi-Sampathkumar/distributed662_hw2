@@ -64,7 +64,8 @@ public:
         {
           std::cout << "Failed to open timeline.json " << std::endl;
             response->set_success_status(1);
-          return Status(StatusCode::INVALID_ARGUMENT, "Cannot open users.json file!");
+            return Status::OK;
+          //return Status(StatusCode::INVALID_ARGUMENT, "Cannot open users.json file!");
         }
         
         //reading the users json file
@@ -73,7 +74,8 @@ public:
         {
           std::cout << "Failed to open users.json " << std::endl;
             response->set_success_status(1);
-          return Status(StatusCode::INVALID_ARGUMENT, "Cannot open users.json file!");
+            return Status::OK;
+          //return Status(StatusCode::INVALID_ARGUMENT, "Cannot open users.json file!");
         }
         
         //Json::Value users;
@@ -133,7 +135,8 @@ public:
         if (!ip_users_file.is_open())
         {
           std::cout << "Failed to open users.json " << std::endl;
-          return Status(StatusCode::INVALID_ARGUMENT, "Cannot open users.json file!");
+          return Status::OK;
+          //return Status(StatusCode::INVALID_ARGUMENT, "Cannot open users.json file!");
         }
         
         Json::Reader reader;
@@ -173,7 +176,8 @@ public:
         if (!ip_users_file.is_open())
         {
           std::cout << "Failed to open users.json " << std::endl;
-          return Status(StatusCode::INVALID_ARGUMENT, "Cannot open users.json file!");
+          return Status::OK;
+          //return Status(StatusCode::INVALID_ARGUMENT, "Cannot open users.json file!");
         }
         
         Json::Reader reader;
@@ -218,7 +222,8 @@ public:
           else
           {
               response->set_success_status(1);
-              return Status(StatusCode::INVALID_ARGUMENT, "Invalid user input!");
+              return Status::OK;
+              //return Status(StatusCode::INVALID_ARGUMENT, "Invalid user input!");
           }
     }
     
@@ -231,7 +236,9 @@ public:
         if (!ip_users_file.is_open())
         {
           std::cout << "Failed to open users.json " << std::endl;
-          return Status(StatusCode::INVALID_ARGUMENT, "Cannot open users.json file!");
+            return Status::OK;
+          //return Status(StatusCode::INVALID_ARGUMENT, "Cannot open users.json file!");
+        
         }
         
         Json::Reader reader;
@@ -273,7 +280,8 @@ public:
           {
               //set the response variable to indicate failure
               response->set_success_status(1);
-              return Status(StatusCode::INVALID_ARGUMENT, "Invalid user argument!");
+              return Status::OK;
+              //return Status(StatusCode::INVALID_ARGUMENT, "Invalid user argument!");
           }
           
         
@@ -302,7 +310,8 @@ public:
             if (!timeline_read.is_open())
             {
               std::cout << "Failed to open timeline.json " << std::endl;
-              return Status(StatusCode::INVALID_ARGUMENT, "Cannot open users.json file!");
+                return Status::OK;
+              //return Status(StatusCode::INVALID_ARGUMENT, "Cannot open users.json file!");
             }
             
             //reading the users json file
@@ -310,7 +319,8 @@ public:
             if (!ip_users_file.is_open())
             {
               std::cout << "Failed to open users.json " << std::endl;
-              return Status(StatusCode::INVALID_ARGUMENT, "Cannot open timeline.json file!");
+              return Status::OK;
+              //return Status(StatusCode::INVALID_ARGUMENT, "Cannot open timeline.json file!");
             }
             
             Json::Reader reader1, reader2;
@@ -364,7 +374,8 @@ public:
             }
         }
         
-        return Status(StatusCode::INVALID_ARGUMENT, "Invalid user input!");
+        //return Status(StatusCode::INVALID_ARGUMENT, "Invalid user input!");
+        return Status::OK;
     }
 };
 
