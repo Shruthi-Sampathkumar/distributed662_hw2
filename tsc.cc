@@ -329,7 +329,7 @@ void Client::processTimeline()
             
             auto t = std::chrono::system_clock::now();
             std::time_t t1 = std::chrono::system_clock::to_time_t(t);
-            post1.set_timestamp(std::ctime(t1));
+            post1.set_timestamp(std::ctime(&t1));
             
             //std::cout << "Updating post : " << new_post << std::endl;
             stream->Write(post1);
