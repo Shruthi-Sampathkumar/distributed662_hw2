@@ -441,7 +441,7 @@ public:
                         post tmp;
                         tmp.set_content(post1.content());
                         tmp.set_owner(post1.owner());
-                        tmp.set_timestamp(post1.timeline());
+                        tmp.set_timestamp(post1.timestamp());
                         
                             members[value]->Write(tmp);
                         
