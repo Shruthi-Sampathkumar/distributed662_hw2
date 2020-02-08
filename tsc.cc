@@ -152,7 +152,7 @@ IReply Client::processCommand(std::string& input)
     IReply ire;
     char* command = newString1[0];
     
-    if (strcmp(command, "FOLLOW")==0)
+    if (strcmpi(command, "FOLLOW")==0)
     {
         //std::string u1 = this->username;
         std::string u2 = newString1[1];
@@ -190,7 +190,7 @@ IReply Client::processCommand(std::string& input)
         }
         
     }
-    else if (strcmp(command, "UNFOLLOW")==0)
+    else if (strcmpi(command, "UNFOLLOW")==0)
     {
         //std::string u1 = username;
         std::string u2 = newString1[1];
@@ -225,7 +225,7 @@ IReply Client::processCommand(std::string& input)
         }
     }
     
-    else if (strcmp(command, "LIST")==0)
+    else if (strcmpi(command, "LIST")==0)
     {
         
         list_request l_request;
@@ -264,7 +264,7 @@ IReply Client::processCommand(std::string& input)
     }
     
     //if the command is timeline
-    else if (strcmp(command,"TIMELINE")==0)
+    else if (strcmpi(command,"TIMELINE")==0)
     {
         
         ire.comm_status = SUCCESS;
