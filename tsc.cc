@@ -185,8 +185,15 @@ IReply Client::processCommand(std::string& input)
         ire.grpc_status = status;
         if (!status.ok())
         {
-            ire.comm_status = FAILURE_UNKNOWN;
-            std::cout << "addTo rpc failed." << std::endl;
+            if (f1_response.success_status()==1)
+            {
+                ire.comm_status = FAILURE_ALREADY_EXISTS;
+                //std::cout << "Already"
+            }
+            else if (f1_response.success_status()==2)
+            {
+                ire.comm_status = FAILURE_INVALID_USERNAME;
+            }
         }
         else
         {
@@ -267,7 +274,7 @@ IReply Client::processCommand(std::string& input)
         
     }
     
-    else if (strcmp(command, "TIMELINE")==0)
+    else
     {
         //IReply ire;
         ire.comm_status = SUCCESS;

@@ -165,6 +165,16 @@ public:
         
         if (users["users"].isMember(u1) and users["users"].isMember(u2))
         {
+            //to check if u1 is already following u2
+            for(int i = 0; i<users["users"][u1]["following"].size(); i++)
+            {
+                if(users["users"][u1]["following"][i].compare(u2) == 0)
+                {
+                    response->set_success_status(1);
+                    return Status(StatusCode::INVALID_ARGUMENT, "Already following!");
+                }
+            }
+            
             users["users"][u1]["following"].append(u2);
             std::cout << "Added Following " << std::endl;
             
@@ -176,11 +186,13 @@ public:
             return Status::OK;
             
         }
+        //if u2 is not an existing user
         else
         {
-            response->set_success_status(1);
+            response->set_success_status(2);
+            return Status(StatusCode::INVALID_ARGUMENT, "User does not exist!");
         }
-        return Status::OK;
+        //return Status::OK;
         
     }
     
