@@ -344,14 +344,17 @@ public:
                     
                     timeline_parsed[value] = updated_timeline;
                     
-                //displying the updated timeline to followers who are in timeline mode
-                    //stream_object = members[value];
-                    for(int i = 0; i<timeline_parsed[value].size(); i++)
+                    //if the user is currently in timeline mode, display the updated timeline
+                    if (members.find(value)!=members.end())
                     {
-                        post tmp;
-                        tmp.set_content(timeline_parsed[value][i].asString());
-                        members[value]->Write(tmp);
+                        for(int i = 0; i<timeline_parsed[value].size(); i++)
+                        {
+                            post tmp;
+                            tmp.set_content(timeline_parsed[value][i].asString());
+                            members[value]->Write(tmp);
+                        }
                     }
+                    
                 }
                 
                 //writing the updated timeline json object to timeline database
