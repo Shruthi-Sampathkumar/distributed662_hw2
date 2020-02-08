@@ -344,6 +344,35 @@ public:
         post post1;
         std::string u1 = user;
         
+        
+        //display the timeline for the user
+        std::ifstream timeline_read("timeline.json", std::ifstream::binary);
+        if (!timeline_read.is_open())
+        {
+          std::cout << "Failed to open timeline.json " << std::endl;
+            return Status::OK;
+          //return Status(StatusCode::INVALID_ARGUMENT, "Cannot open users.json file!");
+        }
+        Json::Reader reader1;
+        Json::Value timeline_parsed;
+        
+        reader1.parse(timeline_read, timeline_parsed);
+        
+        //checking if the user has any timeline information to be displayed
+        if (timeline_parsed[u1]["content"].size>0)
+        {
+            for(int i = 0; i<timeline_parsed[u1]["content"].size(); i++)
+            {
+                    post tmp;
+                tmp.set_content(timeline_parsed[u1]["content"][i].asString());
+                tmp.set_owner(timeline_parsed[u1]["owner"][i].asString());
+                tmp.set_timestamp(timeline_parsed[u1]["timestamp"][i].asString());
+                
+                    stream->Write(tmp);
+            }
+        }
+        
+        
         while (stream->Read(&post1))
         {
             //post post1;
@@ -415,7 +444,6 @@ public:
                             tmp.set_content(timeline_parsed[value]["content"][i].asString());
                             tmp.set_owner(timeline_parsed[value]["owner"][i].asString());
                             tmp.set_timestamp(timeline_parsed[value]["timestamp"][i].asString());
-                            tmp.set_content(timeline_parsed[value][i].asString());
                             
                                 members[value]->Write(tmp);
                         }
