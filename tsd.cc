@@ -160,7 +160,7 @@ public:
         {
             response->set_success_status(1);
         }
-        return Status(StatusCode::INVALID_ARGUMENT, "Invalid user input!");
+        return Status::OK;
         
     }
     
