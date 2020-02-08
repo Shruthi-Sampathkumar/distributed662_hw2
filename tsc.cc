@@ -319,7 +319,7 @@ void Client::processTimeline()
         while (1)
         {
             post post1;
-            std::string u = username;
+            std::string u = username.c_str();
             std::string new_post = getPostMessage();
             new_post.erase(std::remove(new_post.begin(), new_post.end(), '\n'),
             new_post.end());
