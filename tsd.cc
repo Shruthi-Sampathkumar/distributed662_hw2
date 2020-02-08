@@ -57,7 +57,7 @@ public:
     //'members' store the stream object information of the users who are in timeline mode currently
     std::unordered_map<std::string, ServerReaderWriter<post, post>* > members;
     //'active_members' store the users who are active currently so that another machine cannot login with the same username
-    std::unordered_map<std::string, int> > active_members;
+    std::unordered_map<std::string, int> active_members;
     //std::mutex mutex_users, mutex_timeline;
     //std::unique_lock<std::mutex> lock_users(mutex_users, std::defer_lock);
     //std::unique_lock<std::mutex> lock_timeline(mutex_timeline, std::defer_lock);
