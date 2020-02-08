@@ -111,9 +111,9 @@ int Client::connectTo()
     
     if (!status.ok())
     {
-        ire.comm_status = FAILURE_INVALID;
+        ire.comm_status = FAILURE_ALREADY_EXISTS;
         std::cout << "addUser rpc failed." << std::endl;
-        //return false;
+        return -1;
     }
     else
     {
