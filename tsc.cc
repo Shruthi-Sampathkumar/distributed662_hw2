@@ -311,7 +311,7 @@ void Client::processTimeline()
     std::shared_ptr<ClientReaderWriter<post, post> > stream(
         stub_->updates(&context));
     
-    
+    std::string u = username;
     
     //writing a post
     std::thread writer([stream]()
@@ -324,7 +324,7 @@ void Client::processTimeline()
             new_post.end());
 
             post1.set_content(new_post);
-            post1.set_owner(username.c_str());
+            post1.set_owner(u);
             
             auto t = std::chrono::system_clock::now();
             std::time_t t1 = std::chrono::system_clock::to_time_t(t);
