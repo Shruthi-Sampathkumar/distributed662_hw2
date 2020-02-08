@@ -426,7 +426,7 @@ public:
                 //writing the updated timeline json object to timeline database
                 std::ofstream op_timeline_file("timeline.json");
                 op_timeline_file << std::setw(4) << timeline_parsed << std::endl;
-                return Status::OK;
+                //return Status::OK;
             }
         }
         
