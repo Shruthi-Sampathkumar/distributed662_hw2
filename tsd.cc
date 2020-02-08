@@ -13,7 +13,7 @@
 #include <bits/stdc++.h>
 #include <unordered_map>
 #include <grpc++/support/string_ref.h>
-
+//#include <mutex>
 //#include <json/value.h>
 //#include <jsoncpp/json/json.h>
 //#include "/home/csce438/grpc/src/core/lib/json/json.h"
@@ -34,6 +34,7 @@ using grpc::Status;
 using grpc::StatusCode;
 using grpc::ServerReaderWriter;
 
+
 using timeline::social_network;
 using timeline::user;
 using timeline::post;
@@ -52,6 +53,9 @@ class timelineImpl final : public social_network::Service {
 public:
     
     std::unordered_map<std::string, ServerReaderWriter<post, post>* > members;
+    //std::mutex mutex_users, mutex_timeline;
+    //std::unique_lock<std::mutex> lock_users(mutex_users, std::defer_lock);
+    //std::unique_lock<std::mutex> lock_timeline(mutex_timeline, std::defer_lock);
     
     
     //add user to the database
@@ -94,6 +98,7 @@ public:
         //check if the user already is existing in the database
         if (!users["users"].isMember(u1))
         {
+            
             //adding an entry for the user in the users database
             Json::Value followers(Json::arrayValue);
             Json::Value following(Json::arrayValue);
@@ -109,12 +114,15 @@ public:
             op_users_file << std::setw(4) << users << std::endl;
             
             
+            
             //adding an entry for the user in the timeline database
+            
             Json::Value timeline_content(Json::arrayValue);
             timeline_parsed[u1] = timeline_content;
             //dumping the json object in timeline json file
             std::ofstream op_timeline_file("timeline.json");
             op_timeline_file << std::setw(4) << timeline_parsed << std::endl;
+            
             
         }
         
