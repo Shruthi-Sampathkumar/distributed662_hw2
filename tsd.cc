@@ -63,6 +63,12 @@ public:
     follow_response* response)
     {
         //reading the timeline json file
+        //std::lock_guard<decltype(lock_users)> g(lock_users);
+        //std::lock_guard<decltype(lock_timeline)> g(lock_timeline);
+        //if (lock_users.owns_lock() and lock_timeline.owns_lock())
+        //{
+            
+        //}
         std::ifstream timeline_read("timeline.json", std::ifstream::binary);
         if (!timeline_read.is_open())
         {
