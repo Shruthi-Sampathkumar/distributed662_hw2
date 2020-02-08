@@ -352,6 +352,8 @@ void Client::processTimeline()
         {
             post post1;
             std::string new_post = getPostMessage();
+            new_post.erase(std::remove(new_post.begin(), new_post.end(), '\n'),
+            new_post.end());
             //to_send = new_post + " " + username;
             post1.set_content(new_post);
             
