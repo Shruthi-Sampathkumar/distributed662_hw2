@@ -7,8 +7,10 @@ message user {
 }
 
 message post {
-	string content = 1;
-	//string owner = 2;
+    string owner = 1;
+	string content = 2;
+    time_t timestamp = 3;
+	
 }
 
 message follow_request {

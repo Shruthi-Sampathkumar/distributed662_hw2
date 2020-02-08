@@ -7,6 +7,7 @@
 #include <grpc++/grpc++.h>
 #include "client.h"
 #include <thread>
+#include <ctime>
 
 #include "timeline.grpc.pb.h"
 #include "timeline.pb.h"
