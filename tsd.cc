@@ -359,7 +359,7 @@ public:
         reader1.parse(timeline_read, timeline_parsed);
         
         //checking if the user has any timeline information to be displayed
-        if (timeline_parsed[u1]["content"].size>0)
+        if (timeline_parsed[u1]["content"].size()>0)
         {
             for(int i = 0; i<timeline_parsed[u1]["content"].size(); i++)
             {
