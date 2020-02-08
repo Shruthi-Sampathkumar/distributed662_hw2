@@ -311,7 +311,7 @@ void Client::processTimeline()
     std::shared_ptr<ClientReaderWriter<post, post> > stream(
         stub_->updates(&context));
     
-    std::string u = username;
+    
     
     //writing a post
     std::thread writer([stream]()
@@ -319,6 +319,7 @@ void Client::processTimeline()
         while (1)
         {
             post post1;
+            std::string u = username;
             std::string new_post = getPostMessage();
             new_post.erase(std::remove(new_post.begin(), new_post.end(), '\n'),
             new_post.end());
