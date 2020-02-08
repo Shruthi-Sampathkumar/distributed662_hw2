@@ -129,7 +129,7 @@ int Client::connectTo()
 IReply Client::processCommand(std::string& input)
 {
     //parsing the input. 'newString1' will contain the parsed result
-    std::cout << "The input command is : " << input << std::endl;
+    //std::cout << "The input command is : " << input << std::endl;
     
     int j=0, ctr=0;
     char newString1 [2][20];
@@ -186,7 +186,7 @@ IReply Client::processCommand(std::string& input)
         else
         {
             ire.comm_status = SUCCESS;
-            std::cout << "Follow request successful : " << f1_response.success_status()  << std::endl;
+            //std::cout << "Follow request successful : " << f1_response.success_status()  << std::endl;
         }
         
     }
@@ -236,7 +236,7 @@ IReply Client::processCommand(std::string& input)
         
         Status status = stub_->getFollowersUsers(&context, l_request, &l_response);
         ire.grpc_status = status;
-        std::cout << "The status of the function is " << std::endl;
+        //std::cout << "The status of the function is " << std::endl;
         if (!status.ok() or l_response.success_status()!=0)
         {
             ire.comm_status = FAILURE_UNKNOWN;
@@ -253,7 +253,7 @@ IReply Client::processCommand(std::string& input)
                 
                 ire.following_users = following_users;
                 ire.all_users = all_users;
-                std::cout << "List request successful " << std::endl;
+                //std::cout << "List request successful " << std::endl;
             }
             else
             {
