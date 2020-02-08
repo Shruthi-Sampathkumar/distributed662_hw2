@@ -351,7 +351,7 @@ public:
                     updated_timeline[0] = post1.content();
                     
                     int c = 1;
-                    for(int i = 0; i<timeline_parsed[value].size()-1 && c<20; i++)
+                    for(int i = 0; i<timeline_parsed[value].size() && c<20; i++)
                     {
                         updated_timeline[c] = timeline_parsed[value][i];
                         c++;
