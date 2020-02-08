@@ -319,17 +319,17 @@ void Client::processTimeline()
         while (1)
         {
             post post1;
-            std::string u = username.c_str();
+            //std::string u = username.c_str();
             std::string new_post = getPostMessage();
             new_post.erase(std::remove(new_post.begin(), new_post.end(), '\n'),
             new_post.end());
 
             post1.set_content(new_post);
-            post1.set_owner(u);
+            post1.set_owner(username.c_str());
             
             auto t = std::chrono::system_clock::now();
             std::time_t t1 = std::chrono::system_clock::to_time_t(t);
-            post1.set_timestamp(std::ctime(t1));
+            post1.set_timestamp(std::ctime(&t1));
             
             //std::cout << "Updating post : " << new_post << std::endl;
             stream->Write(post1);
