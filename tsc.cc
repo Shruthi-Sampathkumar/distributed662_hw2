@@ -369,6 +369,7 @@ void Client::processTimeline()
     {
             post p;
             while(stream->Read(&p)){
+                std::cout << "Received from server " << std::endl;
                 std::cout << p.content() << std::endl;
             }
     });

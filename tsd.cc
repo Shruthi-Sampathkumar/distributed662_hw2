@@ -356,12 +356,12 @@ public:
                     
                     //updating the timeline json object of the followers
                     //std::string tmp = post->content();
-                    updated_timeline[0] = post1.content();
+                    updated_timeline.append(post1.content());
                     
                     int c = 1;
                     for(int i = 0; i<timeline_parsed[value].size() && c<20; i++)
                     {
-                        updated_timeline[c] = timeline_parsed[value][i];
+                        updated_timeline.append(timeline_parsed[value][i]);
                         c++;
                     }
                     
