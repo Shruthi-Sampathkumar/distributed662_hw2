@@ -288,9 +288,23 @@ class post : public ::google::protobuf::Message /* @@protoc_insertion_point(clas
 
   // accessors -------------------------------------------------------
 
-  // string content = 1;
+  // string owner = 1;
+  void clear_owner();
+  static const int kOwnerFieldNumber = 1;
+  const ::std::string& owner() const;
+  void set_owner(const ::std::string& value);
+  #if LANG_CXX11
+  void set_owner(::std::string&& value);
+  #endif
+  void set_owner(const char* value);
+  void set_owner(const char* value, size_t size);
+  ::std::string* mutable_owner();
+  ::std::string* release_owner();
+  void set_allocated_owner(::std::string* owner);
+
+  // string content = 2;
   void clear_content();
-  static const int kContentFieldNumber = 1;
+  static const int kContentFieldNumber = 2;
   const ::std::string& content() const;
   void set_content(const ::std::string& value);
   #if LANG_CXX11
@@ -302,11 +316,27 @@ class post : public ::google::protobuf::Message /* @@protoc_insertion_point(clas
   ::std::string* release_content();
   void set_allocated_content(::std::string* content);
 
+  // string timestamp = 3;
+  void clear_timestamp();
+  static const int kTimestampFieldNumber = 3;
+  const ::std::string& timestamp() const;
+  void set_timestamp(const ::std::string& value);
+  #if LANG_CXX11
+  void set_timestamp(::std::string&& value);
+  #endif
+  void set_timestamp(const char* value);
+  void set_timestamp(const char* value, size_t size);
+  ::std::string* mutable_timestamp();
+  ::std::string* release_timestamp();
+  void set_allocated_timestamp(::std::string* timestamp);
+
   // @@protoc_insertion_point(class_scope:timeline.post)
  private:
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::internal::ArenaStringPtr owner_;
   ::google::protobuf::internal::ArenaStringPtr content_;
+  ::google::protobuf::internal::ArenaStringPtr timestamp_;
   mutable int _cached_size_;
   friend struct ::protobuf_timeline_2eproto::TableStruct;
   friend void ::protobuf_timeline_2eproto::InitDefaultspostImpl();
@@ -1073,7 +1103,60 @@ inline void user::set_allocated_name(::std::string* name) {
 
 // post
 
-// string content = 1;
+// string owner = 1;
+inline void post::clear_owner() {
+  owner_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& post::owner() const {
+  // @@protoc_insertion_point(field_get:timeline.post.owner)
+  return owner_.GetNoArena();
+}
+inline void post::set_owner(const ::std::string& value) {
+  
+  owner_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:timeline.post.owner)
+}
+#if LANG_CXX11
+inline void post::set_owner(::std::string&& value) {
+  
+  owner_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:timeline.post.owner)
+}
+#endif
+inline void post::set_owner(const char* value) {
+  GOOGLE_DCHECK(value != NULL);
+  
+  owner_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:timeline.post.owner)
+}
+inline void post::set_owner(const char* value, size_t size) {
+  
+  owner_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:timeline.post.owner)
+}
+inline ::std::string* post::mutable_owner() {
+  
+  // @@protoc_insertion_point(field_mutable:timeline.post.owner)
+  return owner_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* post::release_owner() {
+  // @@protoc_insertion_point(field_release:timeline.post.owner)
+  
+  return owner_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void post::set_allocated_owner(::std::string* owner) {
+  if (owner != NULL) {
+    
+  } else {
+    
+  }
+  owner_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), owner);
+  // @@protoc_insertion_point(field_set_allocated:timeline.post.owner)
+}
+
+// string content = 2;
 inline void post::clear_content() {
   content_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
@@ -1124,6 +1207,59 @@ inline void post::set_allocated_content(::std::string* content) {
   }
   content_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), content);
   // @@protoc_insertion_point(field_set_allocated:timeline.post.content)
+}
+
+// string timestamp = 3;
+inline void post::clear_timestamp() {
+  timestamp_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& post::timestamp() const {
+  // @@protoc_insertion_point(field_get:timeline.post.timestamp)
+  return timestamp_.GetNoArena();
+}
+inline void post::set_timestamp(const ::std::string& value) {
+  
+  timestamp_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:timeline.post.timestamp)
+}
+#if LANG_CXX11
+inline void post::set_timestamp(::std::string&& value) {
+  
+  timestamp_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:timeline.post.timestamp)
+}
+#endif
+inline void post::set_timestamp(const char* value) {
+  GOOGLE_DCHECK(value != NULL);
+  
+  timestamp_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:timeline.post.timestamp)
+}
+inline void post::set_timestamp(const char* value, size_t size) {
+  
+  timestamp_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:timeline.post.timestamp)
+}
+inline ::std::string* post::mutable_timestamp() {
+  
+  // @@protoc_insertion_point(field_mutable:timeline.post.timestamp)
+  return timestamp_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* post::release_timestamp() {
+  // @@protoc_insertion_point(field_release:timeline.post.timestamp)
+  
+  return timestamp_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void post::set_allocated_timestamp(::std::string* timestamp) {
+  if (timestamp != NULL) {
+    
+  } else {
+    
+  }
+  timestamp_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), timestamp);
+  // @@protoc_insertion_point(field_set_allocated:timeline.post.timestamp)
 }
 
 // -------------------------------------------------------------------
