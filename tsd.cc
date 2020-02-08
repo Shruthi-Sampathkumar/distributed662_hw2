@@ -129,12 +129,15 @@ public:
             std::ofstream op_timeline_file("timeline.json");
             op_timeline_file << std::setw(4) << timeline_parsed << std::endl;
             
+            response->set_success_status(0);
+            return Status::OK;
+            
             
         }
         
-        response->set_success_status(0);
+        response->set_success_status(1);
         
-        return Status::OK;
+        return Status(StatusCode::ALREADY_EXISTS, "User already exists!");
         
     }
     
