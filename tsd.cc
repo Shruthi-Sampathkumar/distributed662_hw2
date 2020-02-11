@@ -523,10 +523,17 @@ int main(int argc, char** argv)
     //get the server address from command line
     std::string port = "3010";
       int opt = 0;
-      while ((opt = getopt(argc, argv, "p:")) != -1)
+      while ((opt = getopt(argc, argv, "h:p:")) != -1)
       {
-                  port = optarg;
-                  break;
+          switch(opt) {
+          case 'h':
+              hostname = optarg;break;
+          case 'p':
+              port = optarg;break;
+        default:
+            std::cerr << "Invalid Command Line Argument\n";
+                  
+      }
       }
     
     
