@@ -20,8 +20,11 @@
 //#include <jsoncpp/json/json.h>
 //#include "/home/csce438/grpc/src/core/lib/json/json.h"
 //#include "/home/csce438/grpc/third_party/protobuf/conformance/third_party/jsoncpp/jsoncpp.cpp"
-#include "json.h"
+//#include "/home/csce438/grpc/third_party/protobuf/conformance/third_party/jsoncpp/json.h"
 //#include </usr/include/jsoncpp/json/json.h>
+#include "jsoncpp.cpp"
+#include "json.h"
+
 #include <fstream>
 //using json = nlohmann::json;
 
@@ -518,6 +521,31 @@ void RunServer() {
 
 int main(int argc, char** argv)
 {
+    //creating the users json file if it is not existing
+    std::ifstream creation_users("users.json", std::ifstream::binary);
+    if is_empty(creation_users)
+    {
+        Json::Reader reader_creation;
+        Json::Value creation_users1;
+        
+        reader_creation.parse(creation_users, creation_users1);
+        
+        std::ofstream creation_users_op("users.json");
+        creation_users_op << std::setw(4) << creation_users1 << std::endl;
+    }
+    
+    //creating the timeline json file if it is not existing
+    std::ifstream creation_timeline("timeline.json", std::ifstream::binary);
+    if is_empty(creation_timeline)
+    {
+        Json::Reader reader_creation;
+        Json::Value creation_timeline1;
+        
+        reader_creation.parse(creation_timeline, creation_timeline1);
+        
+        std::ofstream creation_timeline_op("timeline.json");
+        creation_timeline_op << std::setw(4) << creation_timeline1 << std::endl;
+    }
     
     RunServer();
     return 0;
