@@ -524,11 +524,16 @@ int main(int argc, char** argv)
     //get the server address from command line
     std::string port = "3010";
       int opt = 0;
-      while ((opt = getopt(argc, argv, "p:")) != -1)
+      while ((opt = getopt(argc, argv, "h:p:")) != -1)
       {
-              port = optarg;
-          break;
-      }
+              switch(opt) {
+                  case 'h':
+                      hostname = optarg;break;
+                  case 'p':
+                      port = optarg;break;
+                  default:
+                      std::cerr << "Invalid Command Line Argument\n";
+              }      }
     
     
     //creating the users json file if it is not existing
@@ -559,7 +564,7 @@ int main(int argc, char** argv)
         creation_timeline_op << std::setw(4) << creation_timeline1 << std::endl;
     }
     
-    RunServer(port);
+    RunServer(host);
     return 0;
     
   
