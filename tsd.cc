@@ -525,7 +525,7 @@ int main(int argc, char** argv)
 {
     //get the server address from command line
     std::string port = "3010";
-    std::string hostname = "0.0.0.0";
+    std::string hostname = "127.0.0.1";
       int opt = 0;
       while ((opt = getopt(argc, argv, "h:p:")) != -1)
       {
