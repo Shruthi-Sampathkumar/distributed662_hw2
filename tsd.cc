@@ -565,7 +565,7 @@ int main(int argc, char** argv)
         creation_timeline_op << std::setw(4) << creation_timeline1 << std::endl;
     }
     
-    RunServer(host);
+    RunServer(hostname);
     return 0;
     
   
