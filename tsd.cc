@@ -523,7 +523,9 @@ int main(int argc, char** argv)
 {
     //creating the users json file if it is not existing
     std::ifstream creation_users("users.json", std::ifstream::binary);
-    if (is_empty(creation_users))
+    
+    
+    if (creation_users.peek() == std::ifstream::traits_type::eof())
     {
         Json::Reader reader_creation;
         Json::Value creation_users1;
@@ -536,7 +538,7 @@ int main(int argc, char** argv)
     
     //creating the timeline json file if it is not existing
     std::ifstream creation_timeline("timeline.json", std::ifstream::binary);
-    if (is_empty(creation_timeline))
+    if (creation_timeline.peek() == std::ifstream::traits_type::eof())
     {
         Json::Reader reader_creation;
         Json::Value creation_timeline1;
