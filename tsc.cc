@@ -59,7 +59,7 @@ int main(int argc, char** argv) {
 
     std::string hostname = "localhost";
     std::string username = "xyz";
-    std::string port = "3010";
+    std::string port = "50051";
     int opt = 0;
     while ((opt = getopt(argc, argv, "h:u:p:")) != -1){
         switch(opt) {
@@ -84,8 +84,9 @@ int main(int argc, char** argv) {
 
 int Client::connectTo()
 {
-    stub_ = social_network::NewStub(grpc::CreateChannel("localhost:50051",
-                                                        grpc::InsecureChannelCredentials()));
+    //stub_ = social_network::NewStub(grpc::CreateChannel("localhost:50051", grpc::InsecureChannelCredentials()));
+    std::string tmp_addr = localhost+":"+port;
+    stub_ = social_network::NewStub(grpc::CreateChannel(tmp_addr, grpc::InsecureChannelCredentials()));
     
     //create_user
     IReply ire;
