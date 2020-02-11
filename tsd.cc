@@ -497,8 +497,8 @@ public:
 
 
 
-void RunServer() {
-  std::string server_address("0.0.0.0:50051");
+void RunServer(std::string &server_address) {
+  //std::string server_address("0.0.0.0:50051");
   timelineImpl service;
   ServerBuilder builder;
     
@@ -524,8 +524,8 @@ void RunServer() {
 int main(int argc, char** argv)
 {
     //get the server address from command line
-    std::string port = "3010";
-    std::string hostname = "127.0.0.1";
+    std::string port = "50051";
+    std::string hostname = "0.0.0.0";
       int opt = 0;
       while ((opt = getopt(argc, argv, "h:p:")) != -1)
       {
@@ -568,7 +568,7 @@ int main(int argc, char** argv)
     }
     
     std::string addr = hostname + ":" + port;
-    RunServer();
+    RunServer(addr);
     return 0;
     
   
