@@ -495,7 +495,20 @@ public:
 
 
 void RunServer() {
-  std::string server_address("0.0.0.0:50051");
+    
+    //get the server address from command line
+    std::string port = "3010";
+    int opt = 0;
+    while ((opt = getopt(argc, argv, "p:")) != -1)
+    {
+                port = optarg;
+                break;
+    }
+    
+    
+    
+  //std::string server_address("0.0.0.0:50051");
+    std::string server_address = port;
     
   timelineImpl service;
   ServerBuilder builder;
