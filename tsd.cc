@@ -113,6 +113,7 @@ public:
         //if the user is not in the database
         if (!users["users"].isMember(u1))
         {
+            std::cout "should have come here";
             //add the user to the current active members list
             active_members[u1]=1;
             
@@ -163,6 +164,7 @@ public:
         
         
         //if the user is in database and also active currently
+        std::cout "Came here";
         response->set_success_status(1);
         
         return Status(StatusCode::ALREADY_EXISTS, "User already exists!");
