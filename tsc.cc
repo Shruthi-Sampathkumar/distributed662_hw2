@@ -39,9 +39,6 @@ class Client : public IClient
                const std::string& p)
             :hostname(hname), username(uname), port(p)
             {}
-    //create a stub for the service social_network
-    
-    
 
     protected:
         virtual int connectTo();
