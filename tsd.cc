@@ -494,21 +494,7 @@ public:
 
 
 
-void RunServer() {
-    
-    //get the server address from command line
-    std::string port = "3010";
-    int opt = 0;
-    while ((opt = getopt(argc, argv, "p:")) != -1)
-    {
-                port = optarg;
-                break;
-    }
-    
-    
-    
-  //std::string server_address("0.0.0.0:50051");
-    std::string server_address = port;
+void RunServer(server_address) {
     
   timelineImpl service;
   ServerBuilder builder;
@@ -534,6 +520,16 @@ void RunServer() {
 
 int main(int argc, char** argv)
 {
+    //get the server address from command line
+    std::string port = "3010";
+      int opt = 0;
+      while ((opt = getopt(argc, argv, "p:")) != -1)
+      {
+                  port = optarg;
+                  break;
+      }
+    
+    
     //creating the users json file if it is not existing
     std::ifstream creation_users("users.json", std::ifstream::binary);
     
@@ -562,7 +558,7 @@ int main(int argc, char** argv)
         creation_timeline_op << std::setw(4) << creation_timeline1 << std::endl;
     }
     
-    RunServer();
+    RunServer(port);
     return 0;
     
   
