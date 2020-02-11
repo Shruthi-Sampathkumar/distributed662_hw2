@@ -8,6 +8,7 @@
 #include <stdio.h>
 #include <iostream>
 #include <memory>
+#include <unistd.h>
 #include <string>
 #include <grpc++/grpc++.h>
 #include <bits/stdc++.h>
