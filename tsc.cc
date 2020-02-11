@@ -85,7 +85,7 @@ int main(int argc, char** argv) {
 int Client::connectTo()
 {
     //stub_ = social_network::NewStub(grpc::CreateChannel("localhost:50051", grpc::InsecureChannelCredentials()));
-    std::string tmp_addr = localhost+":"+port;
+    std::string tmp_addr = hostname+":"+port;
     stub_ = social_network::NewStub(grpc::CreateChannel(tmp_addr, grpc::InsecureChannelCredentials()));
     
     //create_user
