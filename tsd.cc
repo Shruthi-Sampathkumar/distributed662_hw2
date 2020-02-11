@@ -494,7 +494,7 @@ public:
 
 
 
-void RunServer(server_address) {
+void RunServer(std::string server_address) {
     
   timelineImpl service;
   ServerBuilder builder;
