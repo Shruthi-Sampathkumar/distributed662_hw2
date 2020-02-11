@@ -497,7 +497,7 @@ public:
 
 
 
-void RunServer(std::string &server_address) {
+void RunServer() {
   std::string server_address("0.0.0.0:50051");
   timelineImpl service;
   ServerBuilder builder;
@@ -568,7 +568,7 @@ int main(int argc, char** argv)
     }
     
     std::string addr = hostname + ":" + port;
-    RunServer(addr);
+    RunServer();
     return 0;
     
   
