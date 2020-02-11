@@ -42,9 +42,6 @@ class Client : public IClient
     //create a stub for the service social_network
     
     
-    //Client(std::shared_ptr<Channel> channel)
-        //: stub_(social_network::NewStub(channel)) {}
-    
 
     protected:
         virtual int connectTo();
@@ -90,22 +87,12 @@ int main(int argc, char** argv) {
 
 int Client::connectTo()
 {
-	// ------------------------------------------------------------
-    // In this function, you are supposed to create a stub so that
-    // you call service methods in the processCommand/porcessTimeline
-    // functions. That is, the stub should be accessible when you want
-    // to call any service methods in those functions.
-    // I recommend you to have the stub as
-    // a member variable in your own Client class.
-    // Please refer to gRpc tutorial how to create a stub.
-	// ------------------------------------------------------------
     stub_ = social_network::NewStub(grpc::CreateChannel("localhost:50051",
                                                         grpc::InsecureChannelCredentials()));
     
     //create_user
     IReply ire;
     ClientContext context;
-    //std::string user1;
     user user1;
     user1.set_name(username);
     follow_response f1_response;
@@ -122,7 +109,6 @@ int Client::connectTo()
     {
         ire.comm_status = SUCCESS;
         std::cout << "User added to database successfully " << std::endl;
-    //return true;
     }
     std::cout << "connectTo() is successful at the client" << std::endl;
     return 1; // return 1 if success, otherwise return -1
@@ -131,8 +117,6 @@ int Client::connectTo()
 IReply Client::processCommand(std::string& input)
 {
     //parsing the input. 'newString1' will contain the parsed result
-    //std::cout << "The input command is : " << input << std::endl;
-    
     int j=0, ctr=0;
     char newString1 [2][20];
     for(int i=0;i<=(input.length());i++)
@@ -156,11 +140,7 @@ IReply Client::processCommand(std::string& input)
     
     if (strcasecmp(command, "FOLLOW")==0)
     {
-        //std::string u1 = this->username;
         std::string u2 = newString1[1];
-
-	    //user1.set_name(this->username);
-        //user2.set_name(u2);
         
         follow_request f1_request;
         f1_request.set_user1(username);
@@ -177,7 +157,6 @@ IReply Client::processCommand(std::string& input)
             {
                 ire.grpc_status=Status::OK;
                 ire.comm_status = FAILURE_ALREADY_EXISTS;
-                //std::cout << "Already"
             }
             else if (f1_response.success_status()==2)
             {
@@ -188,13 +167,11 @@ IReply Client::processCommand(std::string& input)
         else
         {
             ire.comm_status = SUCCESS;
-            //std::cout << "Follow request successful : " << f1_response.success_status()  << std::endl;
         }
         
     }
     else if (strcasecmp(command, "UNFOLLOW")==0)
     {
-        //std::string u1 = username;
         std::string u2 = newString1[1];
         
         
@@ -222,8 +199,6 @@ IReply Client::processCommand(std::string& input)
             {
                 ire.comm_status = SUCCESS;
             }
-            
-            //std::cout << "Unfollow request successful : " << f2_response.success_status() << std::endl;
         }
     }
     
@@ -238,7 +213,6 @@ IReply Client::processCommand(std::string& input)
         
         Status status = stub_->getFollowersUsers(&context, l_request, &l_response);
         ire.grpc_status = status;
-        //std::cout << "The status of the function is " << std::endl;
         if (!status.ok() or l_response.success_status()!=0)
         {
             ire.comm_status = FAILURE_UNKNOWN;
@@ -255,7 +229,6 @@ IReply Client::processCommand(std::string& input)
                 
                 ire.following_users = following_users;
                 ire.all_users = all_users;
-                //std::cout << "List request successful " << std::endl;
             }
             else
             {
@@ -287,51 +260,36 @@ IReply Client::processCommand(std::string& input)
 
 void Client::processTimeline()
 {
-	// ------------------------------------------------------------
-    // In this function, you are supposed to get into timeline mode.
-    // You may need to call a service method to communicate with
-    // the server. Use getPostMessage/displayPostMessage functions
-    // for both getting and displaying messages in timeline mode.
-    // You should use them as you did in hw1.
-	// ------------------------------------------------------------
-
-    // ------------------------------------------------------------
-    // IMPORTANT NOTICE:
-    //
-    // Once a user enter to timeline mode , there is no way
-    // to command mode. You don't have to worry about this situation,
-    // and you can terminate the client program by pressing
-    // CTRL-C (SIGINT)
-	// ------------------------------------------------------------
-    
     ClientContext context;
     
+    //creating metadata with the name of the user
     context.AddMetadata("user", username.c_str());
     
+    //creating a stream object
     std::shared_ptr<ClientReaderWriter<post, post> > stream(
         stub_->updates(&context));
     
     std::string u = username.c_str();
     
-    //writing a post
+    //getting an input from the user (post) and sending it to the server
     std::thread writer([stream, u]()
     {
         while (1)
         {
             post post1;
-            //std::string u = username.c_str();
+            //getting an input post from user
             std::string new_post = getPostMessage();
+            
+            //setting the post message type with data
             new_post.erase(std::remove(new_post.begin(), new_post.end(), '\n'),
             new_post.end());
-
             post1.set_content(new_post);
             post1.set_owner(u);
-            
             auto t = std::chrono::system_clock::now();
             std::time_t t1 = std::chrono::system_clock::to_time_t(t);
             post1.set_timestamp(std::ctime(&t1));
             
-            //std::cout << "Updating post : " << new_post << std::endl;
+            //sending data to server
             stream->Write(post1);
         }
         stream->WritesDone();
@@ -344,12 +302,14 @@ void Client::processTimeline()
             post p;
             while(stream->Read(&p))
             {
-                struct tm tm;
-                strptime(p.timestamp().c_str(), "%a %b %d %OH:%M:%OS %Y", &tm);
-                time_t t = mktime(&tm);
-                displayPostMessage(p.owner(), p.content(), t);
-                //std::cout << "Received from server " << std::endl;
-                //std::cout << p.content() << std::endl;
+                //struct tm tm;
+                //strptime(p.timestamp().c_str(), "%a %b %d %OH:%M:%OS %Y", &tm);
+                //time_t t = mktime(&tm);
+                auto t = std::chrono::system_clock::now();
+                std::time_t t1 = std::chrono::system_clock::to_time_t(t);
+                //displaying the post to the user in timeline mode
+                displayPostMessage(p.owner(), p.content(), t1);
+                
             }
     });
     
